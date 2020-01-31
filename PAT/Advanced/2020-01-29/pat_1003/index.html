@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Notes,ADS," />
+  <meta name="keywords" content="PAT," />
 
 
 
@@ -83,23 +83,17 @@
 
 
 
-<meta name="description" content="Definition P问题是指：用确定图灵机可以在多项式时间内解决的问题。一个问题可以找到一个能在多项式的时间里解决它的算法。也就是复杂度为O(1),O(log(n)),O(n^a)等的。  NP问题：用非确定图灵机可以在多项式时间内解决。可以在多项式的时间里验证一个解的问题（注意，NP问题不是非P问题！！！）。所以比如最短路问题、TSP旅行商问题，一个解出来了（一条路径出来了），那么我验证这个">
+<meta name="description" content="ProblemAs an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city an">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【ADS】NP Completeness">
-<meta property="og:url" content="https://iris-cyy.github.io/Notes/ADS/2020-01-26/np_completeness/index.html">
+<meta property="og:title" content="【PAT-Advanced】1003 Emergency">
+<meta property="og:url" content="https://iris-cyy.github.io/PAT/Advanced/2020-01-29/pat_1003/index.html">
 <meta property="og:site_name" content="花落知多少">
-<meta property="og:description" content="Definition P问题是指：用确定图灵机可以在多项式时间内解决的问题。一个问题可以找到一个能在多项式的时间里解决它的算法。也就是复杂度为O(1),O(log(n)),O(n^a)等的。  NP问题：用非确定图灵机可以在多项式时间内解决。可以在多项式的时间里验证一个解的问题（注意，NP问题不是非P问题！！！）。所以比如最短路问题、TSP旅行商问题，一个解出来了（一条路径出来了），那么我验证这个">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/npc/weien.png">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/npc/npc.png">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/npc/ex1.png">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/npc/ex2.png">
-<meta property="article:published_time" content="2020-01-26T13:53:29.000Z">
-<meta property="article:modified_time" content="2020-01-26T14:27:04.397Z">
+<meta property="og:description" content="ProblemAs an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city an">
+<meta property="article:published_time" content="2020-01-29T08:29:00.000Z">
+<meta property="article:modified_time" content="2020-01-29T11:46:03.439Z">
 <meta property="article:author" content="Irisssy">
-<meta property="article:tag" content="Notes">
-<meta property="article:tag" content="ADS">
+<meta property="article:tag" content="PAT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://iris-cyy.github.io/images/ads/npc/weien.png">
 
 
 
@@ -129,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://iris-cyy.github.io/Notes/ADS/2020-01-26/np_completeness/"/>
+  <link rel="canonical" href="https://iris-cyy.github.io/PAT/Advanced/2020-01-29/pat_1003/"/>
 
 
 
 
 
-  <title>【ADS】NP Completeness | 花落知多少</title>
+  <title>【PAT-Advanced】1003 Emergency | 花落知多少</title>
   
 
 
@@ -320,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/Notes/ADS/2020-01-26/np_completeness/">
+    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/PAT/Advanced/2020-01-29/pat_1003/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Irisssy">
@@ -337,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【ADS】NP Completeness</h1>
+          <h1 class="post-title" itemprop="name headline">【PAT-Advanced】1003 Emergency</h1>
         
 
         <div class="post-meta">
@@ -349,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-26T21:53:29+08:00">
-                2020-01-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-29T16:29:00+08:00">
+                2020-01-29
               </time>
             
 
@@ -372,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Notes</span>
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
                   </a>
                 </span>
 
@@ -383,8 +377,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Notes/ADS/" itemprop="url" rel="index">
-                    <span itemprop="name">ADS</span>
+                  <a href="/categories/PAT/Advanced/" itemprop="url" rel="index">
+                    <span itemprop="name">Advanced</span>
                   </a>
                 </span>
 
@@ -400,7 +394,7 @@
 
           
           
-             <span id="/Notes/ADS/2020-01-26/np_completeness/" class="leancloud_visitors" data-flag-title="【ADS】NP Completeness">
+             <span id="/PAT/Advanced/2020-01-29/pat_1003/" class="leancloud_visitors" data-flag-title="【PAT-Advanced】1003 Emergency">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -431,34 +425,23 @@
       
 
       
-        <h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><ol>
-<li><p>P问题是指：用确定图灵机可以在多项式时间内解决的问题。一个问题可以找到一个能在多项式的时间里解决它的算法。也就是复杂度为O(1),O(log(n)),O(n^a)等的。</p>
-</li>
-<li><p>NP问题：用非确定图灵机可以在多项式时间内解决。可以在多项式的时间里验证一个解的问题（注意，NP问题不是非P问题！！！）。所以比如最短路问题、TSP旅行商问题，一个解出来了（一条路径出来了），那么我验证这个解（计算这条路径的长度）可以在O(n)的复杂度里解决，所以是NP问题。</p>
-</li>
-<li><p>NPC（NP Complete，NP完全）问题满足：首先，它得是一个NP问题；然后，所有的NP问题都可以约化到它。证明一个问题是NPC问题也很简单。先证明它至少是一个NP问题，再证明其中一个已知的NPC问题能约化到它（由约化的传递性）。第一个NPC问题是逻辑电路问题（给定一个逻辑电路，问是否存在一种输入使输出为True），并且可以证明所有NP问题都能约化到它（证明过程复杂）。Hamilton 回路、TSP问题、SAT问题（判断一组给定的布林函数，是否可以找到一组变数赋值能使其为真）是NPC问题。</p>
-</li>
-<li><p>NP Hard问题满足NPC问题定义的第二条但不一定要满足第一条（即所有NP问题都可以约化到它，但它不一定是NP问题），所以NP Hard问题包含了NPC问题。<br>若A为NP-Hard，A可以规约到B，则B为NP-Hard</p>
-</li>
-</ol>
-<p>所以P问题一定是NP问题，NPC问题也一定是NP问题，NPC问题也一定是NP Hard问题，但NP Hard问题不一定是NP问题。</p>
-<p>$L \in P \Rightarrow \bar L \in P$<br>$L \in NP \Rightarrow \bar L \in co$-$NP$</p>
- <img src="/images/ads/npc/weien.png" width=50%>
-
-
-
-<h2 id="NP-complete"><a href="#NP-complete" class="headerlink" title="NP-complete:"></a>NP-complete:</h2> <img src="/images/ads/npc/npc.png" width=40%>
-<br>
-
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each test case, the first line contains 4 positive integers: $N (≤500)$ - the number of cities (and the cities are numbered from 0 to $N$−1), $M$ - the number of roads, $C_1$ and $C_2$ - the cities that you are currently in and that you must save, respectively. The next line contains <em>N</em> integers, where the $i$-th integer is the number of rescue teams in the $i$-th city. Then $M$ lines follow, each describes a road with three integers $c_1$, $c_2$ and $L$, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from $C_1$ to $C_2$.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each test case, print in one line two numbers: the number of different shortest paths between $C_1$ and $C_2​$, and the maximum amount of rescue teams you can possibly gather. All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><blockquote>
+<p>5 6 0 2<br>1 2 1 5 3<br>0 1 1<br>0 2 2<br>0 3 1<br>1 2 1<br>2 4 1<br>3 4 1</p>
+</blockquote>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><blockquote>
+<p>2 4</p>
+</blockquote>
+<p><br></p>
 <hr>
-<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises:"></a>Exercises:</h2><p><img src="/images/ads/npc/ex1.png" alt="ex1"></p>
-<p><img src="/images/ads/npc/ex2.png" alt="ex2"></p>
-<p>NP + NP-hand -&gt; NP-complete</p>
-<br>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>这是图算法里最短路径问题的变形。</p>
+<p>因为节点数不太大，所以用邻接矩阵来存储路径（其实是懒得动脑）。</p>
+<p>并且因为懒得动脑不想写Dijkstra，就用dfs来遍历，遍历到目的地之后比较路径长度和救援队数量，满足条件则更新对应变量。如果不是目的地则继续往前搜索直到搜不到新的节点。</p>
+<p>实现代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 505</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 10000000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> M; <span class="comment">//number of roads</span></span><br><span class="line"><span class="keyword">int</span> N; <span class="comment">//number of cities</span></span><br><span class="line"><span class="keyword">int</span> C1, C2; <span class="comment">//outset, desitination</span></span><br><span class="line"><span class="keyword">int</span> rt_num[MAXN]; <span class="comment">//number of rescue teams in each city</span></span><br><span class="line"><span class="keyword">int</span> road[MAXN][MAXN]; <span class="comment">//Adjacency matrix</span></span><br><span class="line"><span class="keyword">int</span> visited[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="keyword">int</span> shortest_path;</span><br><span class="line"><span class="keyword">int</span> max_rt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    M = N = C1 = C2 = cnt = max_rt = <span class="number">0</span>;</span><br><span class="line">    shortest_path = INF;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;MAXN; i++)&#123;</span><br><span class="line">        visited[i] = <span class="number">0</span>;</span><br><span class="line">        rt_num[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;MAXN; j++)&#123;</span><br><span class="line">            road[i][j] = INF;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> <span class="built_in">point</span>, <span class="keyword">int</span> length, <span class="keyword">int</span> rt)</span></span>&#123;</span><br><span class="line">    visited[<span class="built_in">point</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(length &gt; shortest_path)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">point</span> == C2)&#123;</span><br><span class="line">        <span class="keyword">if</span>(length &lt; shortest_path)&#123;</span><br><span class="line">            cnt = <span class="number">1</span>;</span><br><span class="line">            shortest_path = length;</span><br><span class="line">            max_rt = rt;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(length == shortest_path)&#123;</span><br><span class="line">            cnt++;</span><br><span class="line">            <span class="keyword">if</span>(rt &gt; max_rt)&#123;</span><br><span class="line">                max_rt = rt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(road[<span class="built_in">point</span>][i] != INF &amp;&amp; visited[i] == <span class="number">0</span>)&#123;</span><br><span class="line">                dfs(i, length+road[<span class="built_in">point</span>][i], rt+rt_num[i]);</span><br><span class="line">                visited[i] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M &gt;&gt; C1 &gt;&gt; C2;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; rt_num[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> start, <span class="built_in">end</span>, length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;M; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; start &gt;&gt; <span class="built_in">end</span> &gt;&gt; length;</span><br><span class="line">        road[start][<span class="built_in">end</span>] = length;</span><br><span class="line">        road[<span class="built_in">end</span>][start] = length;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(C1, <span class="number">0</span>, rt_num[C1]);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; cnt &lt;&lt; <span class="string">" "</span> &lt;&lt; max_rt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">http://www.matrix67.com/blog/archives/105</a></p>
-<br>
       
     </div>
     
@@ -475,9 +458,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Notes/" rel="tag"># Notes</a>
-          
-            <a href="/tags/ADS/" rel="tag"># ADS</a>
+            <a href="/tags/PAT/" rel="tag"># PAT</a>
           
         </div>
       
@@ -490,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Notes/ADS/2020-01-26/time_complexity/" rel="next" title="【ADS】Time Complexity">
-                <i class="fa fa-chevron-left"></i> 【ADS】Time Complexity
+              <a href="/PAT/index/2020-01-29/pat_index/" rel="next" title="【PAT】目录">
+                <i class="fa fa-chevron-left"></i> 【PAT】目录
               </a>
             
           </div>
@@ -499,10 +480,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Notes/ADS/2020-01-26/greedy/" rel="prev" title="【ADS】Greedy Algorithm">
-                【ADS】Greedy Algorithm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -676,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition"><span class="nav-number">1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NP-complete"><span class="nav-number">2.</span> <span class="nav-text">NP-complete:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises"><span class="nav-number">3.</span> <span class="nav-text">Exercises:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Specification"><span class="nav-number">1.1.</span> <span class="nav-text">Input Specification:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Specification"><span class="nav-number">1.2.</span> <span class="nav-text">Output Specification:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.3.</span> <span class="nav-text">Sample Input:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.4.</span> <span class="nav-text">Sample Output:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li></ol></div>
             
 
           </div>
