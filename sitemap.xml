@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iris-cyy.github.io/Tricks/2020-02-02/git/</loc>
+    
+    <lastmod>2020-02-02T09:33:32.165Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Projects/2020-02-02/java_maze/</loc>
+    
+    <lastmod>2020-02-02T09:19:40.278Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Projects/2020-02-02/java_crawler/</loc>
+    
+    <lastmod>2020-02-02T08:52:34.653Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iris-cyy.github.io/Projects/2020-02-01/mua_interpreter/</loc>
     
     <lastmod>2020-02-02T07:59:31.067Z</lastmod>
