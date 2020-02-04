@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Notes,ADS," />
+  <meta name="keywords" content="PAT," />
 
 
 
@@ -83,22 +83,17 @@
 
 
 
-<meta name="description" content="123456789while ( read a document D ) &amp;#123;    while ( read a term T in D ) &amp;#123;        if ( Find( Dictionary, T ) &#x3D;&#x3D; false )            Insert( Dictionary, T );        Get T’s posting lis">
+<meta name="description" content="ProblemA family hierarchy is usually presented by a pedigree tree. Your job is to count those family members who have no child. Input Specification:Each input file contains one test case. Each case st">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【ADS】Inverted File Index">
-<meta property="og:url" content="https://iris-cyy.github.io/Notes/ADS/2020-01-27/inverted_file_index/index.html">
+<meta property="og:title" content="【PAT-Advanced】1004 Counting Leaves">
+<meta property="og:url" content="https://iris-cyy.github.io/PAT/Advanced/2020-02-04/pat_1004/index.html">
 <meta property="og:site_name" content="花落知多少">
-<meta property="og:description" content="123456789while ( read a document D ) &amp;#123;    while ( read a term T in D ) &amp;#123;        if ( Find( Dictionary, T ) &#x3D;&#x3D; false )            Insert( Dictionary, T );        Get T’s posting lis">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/ifi/ind1.png">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/ifi/ind2.png">
-<meta property="og:image" content="https://iris-cyy.github.io/images/ads/ifi/ex1.png">
-<meta property="article:published_time" content="2020-01-27T04:32:16.000Z">
-<meta property="article:modified_time" content="2020-01-27T04:38:24.375Z">
+<meta property="og:description" content="ProblemA family hierarchy is usually presented by a pedigree tree. Your job is to count those family members who have no child. Input Specification:Each input file contains one test case. Each case st">
+<meta property="article:published_time" content="2020-02-04T04:05:47.000Z">
+<meta property="article:modified_time" content="2020-02-04T11:10:12.473Z">
 <meta property="article:author" content="Irisssy">
-<meta property="article:tag" content="Notes">
-<meta property="article:tag" content="ADS">
+<meta property="article:tag" content="PAT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://iris-cyy.github.io/images/ads/ifi/ind1.png">
 
 
 
@@ -128,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://iris-cyy.github.io/Notes/ADS/2020-01-27/inverted_file_index/"/>
+  <link rel="canonical" href="https://iris-cyy.github.io/PAT/Advanced/2020-02-04/pat_1004/"/>
 
 
 
 
 
-  <title>【ADS】Inverted File Index | 花落知多少</title>
+  <title>【PAT-Advanced】1004 Counting Leaves | 花落知多少</title>
   
 
 
@@ -319,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/Notes/ADS/2020-01-27/inverted_file_index/">
+    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/PAT/Advanced/2020-02-04/pat_1004/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Irisssy">
@@ -336,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【ADS】Inverted File Index</h1>
+          <h1 class="post-title" itemprop="name headline">【PAT-Advanced】1004 Counting Leaves</h1>
         
 
         <div class="post-meta">
@@ -348,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-27T12:32:16+08:00">
-                2020-01-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T12:05:47+08:00">
+                2020-02-04
               </time>
             
 
@@ -371,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Notes</span>
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
                   </a>
                 </span>
 
@@ -382,8 +377,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Notes/ADS/" itemprop="url" rel="index">
-                    <span itemprop="name">ADS</span>
+                  <a href="/categories/PAT/Advanced/" itemprop="url" rel="index">
+                    <span itemprop="name">Advanced</span>
                   </a>
                 </span>
 
@@ -399,7 +394,7 @@
 
           
           
-             <span id="/Notes/ADS/2020-01-27/inverted_file_index/" class="leancloud_visitors" data-flag-title="【ADS】Inverted File Index">
+             <span id="/PAT/Advanced/2020-02-04/pat_1004/" class="leancloud_visitors" data-flag-title="【PAT-Advanced】1004 Counting Leaves">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -430,63 +425,29 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">while ( read a document D ) &#123;</span><br><span class="line">    while ( read a term T in D ) &#123;</span><br><span class="line">        if ( Find( Dictionary, T ) &#x3D;&#x3D; false )</span><br><span class="line">            Insert( Dictionary, T );</span><br><span class="line">        Get T’s posting list;</span><br><span class="line">        Insert a node to T’s posting list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Write the inverted index to disk;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BlockCnt &#x3D; 0; </span><br><span class="line">while ( read a document D ) &#123;</span><br><span class="line">  while ( read a term T in D ) &#123;</span><br><span class="line">    if ( out of memory ) &#123;</span><br><span class="line">      Write BlockIndex[BlockCnt] to disk;</span><br><span class="line">      BlockCnt ++;</span><br><span class="line">      FreeMemory;</span><br><span class="line">    &#125;</span><br><span class="line">    if ( Find( Dictionary, T ) &#x3D;&#x3D; false )</span><br><span class="line">      Insert( Dictionary, T );</span><br><span class="line">    Get T’s posting list;</span><br><span class="line">    Insert a node to T’s posting list;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">for ( i&#x3D;0; i&lt;BlockCnt; i++ )</span><br><span class="line">  Merge( InvertedIndex, BlockIndex[i] );</span><br></pre></td></tr></table></figure>
-<br>
-
-<h2 id="Distributed-Index"><a href="#Distributed-Index" class="headerlink" title="Distributed Index"></a>Distributed Index</h2><ul>
-<li><p>Term-partitioned</p>
-<img src="/images/ads/ifi/ind1.png" width=50%>
-</li>
-<li><p>Document-partitioned index</p>
-<img src="/images/ads/ifi/ind2.png" width=50%>
-
-</li>
-</ul>
-<h2 id="Measures-for-a-Search-Engine"><a href="#Measures-for-a-Search-Engine" class="headerlink" title="Measures for a Search Engine"></a>Measures for a Search Engine</h2><ul>
-<li>How fast does it index</li>
-<li>How fast does it search</li>
-<li>Expressiveness of query language</li>
-</ul>
-<p><strong>Data Retrieval Performance Evaluation (after establishing correctness)</strong></p>
-<ul>
-<li>Response time</li>
-<li>Index space</li>
-</ul>
-<p><strong>Information Retrieval Performance Evaluation</strong></p>
-<ul>
-<li>How relevant is the answer set?</li>
-</ul>
-<br>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th><strong>Relevant</strong></th>
-<th><strong>Irrelevant</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Retrieved</strong></td>
-<td>$R_R$</td>
-<td>$I_R$</td>
-</tr>
-<tr>
-<td><strong>Not Retrieved</strong></td>
-<td>$R_N$</td>
-<td>$I_N$</td>
-</tr>
-</tbody></table>
-<p>Precision:  $P=R_R/(R_R+I_R)$</p>
-<p>Recall:  $R=R_R/(R_R+R_N)$<br><br></p>
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>A family hierarchy is usually presented by a pedigree tree. Your job is to count those family members who have no child.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case starts with a line containing 0&lt;$N$&lt;100, the number of nodes in a tree, and $M (&lt;N)$, the number of non-leaf nodes. Then $M$ lines follow, each in the format:</p>
+<blockquote>
+<p>ID K ID[1] ID[2] … ID[K]</p>
+</blockquote>
+<p>where <code>ID</code> is a two-digit number representing a given non-leaf node, <code>K</code> is the number of its children, followed by a sequence of two-digit <code>ID</code>‘s of its children. For the sake of simplicity, let us fix the root ID to be <code>01</code>.</p>
+<p>The input ends with $N$ being 0. That case must NOT be processed.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each test case, you are supposed to count those family members who have no child <strong>for every seniority level</strong> starting from the root. The numbers must be printed in a line, separated by a space, and there must be no extra space at the end of each line.</p>
+<p>The sample case represents a tree with only 2 nodes, where <code>01</code> is the root and <code>02</code> is its only child. Hence on the root <code>01</code>level, there is <code>0</code> leaf node; and on the next level, there is <code>1</code> leaf node. Then we should output <code>0 1</code> in a line.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><blockquote>
+<p>2 1<br>01 1 02</p>
+</blockquote>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><blockquote>
+<p>0 1</p>
+</blockquote>
+<p><br></p>
 <hr>
-<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><p><img src="/images/ads/ifi/ex1.png" alt="ex1"></p>
-<br>
-
-<hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://blog.csdn.net/Woolseyyy/article/details/51559937" target="_blank" rel="noopener">https://blog.csdn.net/Woolseyyy/article/details/51559937</a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>这题只要根据输入构建一颗树，记录每个节点的<code>child</code>, <code>parent</code>以及<code>level</code>，然后做一个层序遍历，输出每一层没有子节点的节点数即可。</p>
+<p>这里有一个trick，关于<code>level</code>值的更新。发现测试点中大概ID从顶层往下依次增加，并且录入的顺序从小到大，这使得树的构建减少了根据新的父子关系更新整棵子树<code>level</code>值的情况。</p>
+<p>实现代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 105</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> M = <span class="number">0</span>; <span class="comment">//number of non-leaf nodes</span></span><br><span class="line"><span class="keyword">int</span> N = <span class="number">0</span>; <span class="comment">//number of nodes</span></span><br><span class="line"><span class="keyword">int</span> leafNum[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> child_num;</span><br><span class="line">    <span class="keyword">int</span> level;</span><br><span class="line">    <span class="keyword">int</span> parent_id;</span><br><span class="line">&#125;Node[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;MAXN; i++)&#123;</span><br><span class="line">        Node[i].child_num = <span class="number">0</span>;</span><br><span class="line">        Node[i].level = <span class="number">0</span>;</span><br><span class="line">        Node[i].parent_id = <span class="number">0</span>;</span><br><span class="line">        leafNum[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M;</span><br><span class="line">    <span class="keyword">if</span>(N == <span class="number">0</span> || M &gt; N)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> id, child_id;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;M; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; id;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; Node[id].child_num;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;Node[id].child_num; j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; child_id;</span><br><span class="line">            Node[child_id].parent_id = id;</span><br><span class="line">            <span class="comment">//如果会出现乱序情况，大概要在这里加更新level值，</span></span><br><span class="line">            <span class="comment">//并且要加判断，如果child有子节点，则在更新了level之后也要顺便更新子树所有节点的level</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Node[<span class="number">1</span>].level = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=N; i++)&#123;</span><br><span class="line">        Node[i].level = Node[Node[i].parent_id].level + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> maxlevel = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=N; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Node[i].level &gt; maxlevel)&#123;</span><br><span class="line">            maxlevel = Node[i].level;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Node[i].child_num == <span class="number">0</span>)&#123;</span><br><span class="line">            leafNum[Node[i].level]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;maxlevel; i++)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; leafNum[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; leafNum[maxlevel] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后来在网上发现了一个更强的做法，用的dfs，贴在下面</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//https://blog.csdn.net/richenyunqi/article/details/79533166</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;tree(<span class="number">100</span>);<span class="comment">//下标存储结点编号，元素内容存储儿子结点编号</span></span><br><span class="line"><span class="keyword">int</span> leaveNumOfLevel[<span class="number">100</span>],maxLevel=<span class="number">-1</span>;<span class="comment">//每层叶子节点数、最大层数</span></span><br><span class="line"><span class="keyword">int</span> N,M;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> v,<span class="keyword">int</span> level)</span></span>&#123;<span class="comment">//深度优先遍历</span></span><br><span class="line">    maxLevel=<span class="built_in">max</span>(level,maxLevel);<span class="comment">//更新最大层数</span></span><br><span class="line">    <span class="keyword">if</span>(tree[v].empty())<span class="comment">//如果没有儿子结点，则为叶节点</span></span><br><span class="line">        ++leaveNumOfLevel[level];<span class="comment">//递增该节点所处层数下的叶节点数目</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i:tree[v])<span class="comment">//不是叶节点</span></span><br><span class="line">        DFS(i,level+<span class="number">1</span>);<span class="comment">//递归遍历儿子结点</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;N,&amp;M);</span><br><span class="line">    <span class="keyword">while</span>(M--)&#123;</span><br><span class="line">        <span class="keyword">int</span> id,k;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;id,&amp;k);</span><br><span class="line">        <span class="keyword">while</span>(k--)&#123;</span><br><span class="line">            <span class="keyword">int</span> iid;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;iid);</span><br><span class="line">            tree[id].push_back(iid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    DFS(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=maxLevel;++i)<span class="comment">//输出每层叶子节点数</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s%d"</span>,i==<span class="number">0</span>?<span class="string">""</span>:<span class="string">" "</span>,leaveNumOfLevel[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -504,9 +465,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Notes/" rel="tag"># Notes</a>
-          
-            <a href="/tags/ADS/" rel="tag"># ADS</a>
+            <a href="/tags/PAT/" rel="tag"># PAT</a>
           
         </div>
       
@@ -519,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Notes/ADS/2020-01-26/leftist/" rel="next" title="【ADS】Leftist Heap">
-                <i class="fa fa-chevron-left"></i> 【ADS】Leftist Heap
+              <a href="/Notes/Computer-Vision/2020-02-03/learning_CNN/" rel="next" title="【CV】Learning CNN">
+                <i class="fa fa-chevron-left"></i> 【CV】Learning CNN
               </a>
             
           </div>
@@ -529,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Notes/ADS/2020-01-27/bptree/" rel="prev" title="【ADS】B+ Tree">
-                【ADS】B+ Tree <i class="fa fa-chevron-right"></i>
+              <a href="/PAT/Advanced/2020-02-04/pat_1005/" rel="prev" title="【PAT】1005 Spell It Right">
+                【PAT】1005 Spell It Right <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -705,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Distributed-Index"><span class="nav-number">1.</span> <span class="nav-text">Distributed Index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Measures-for-a-Search-Engine"><span class="nav-number">2.</span> <span class="nav-text">Measures for a Search Engine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises"><span class="nav-number">3.</span> <span class="nav-text">Exercises</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Specification"><span class="nav-number">1.1.</span> <span class="nav-text">Input Specification:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Specification"><span class="nav-number">1.2.</span> <span class="nav-text">Output Specification:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.3.</span> <span class="nav-text">Sample Input:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.4.</span> <span class="nav-text">Sample Output:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li></ol></div>
             
 
           </div>
