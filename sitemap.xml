@@ -2,6 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iris-cyy.github.io/Notes/Computer-Vision/2020-02-03/learning_CNN/</loc>
+    
+    <lastmod>2020-02-03T05:15:59.355Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Notes/Computer-Vision/2020-02-03/image_stitching/</loc>
+    
+    <lastmod>2020-02-03T05:11:48.970Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Notes/Computer-Vision/2020-02-03/harris_corner/</loc>
+    
+    <lastmod>2020-02-03T05:06:48.525Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Notes/Computer-Vision/2020-02-03/canny_edge/</loc>
+    
+    <lastmod>2020-02-03T05:02:55.084Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Notes/Computer-Vision/2020-02-03/cv_review/</loc>
+    
+    <lastmod>2020-02-03T04:31:45.043Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Projects/2020-02-01/mua_interpreter/</loc>
+    
+    <lastmod>2020-02-03T03:55:39.757Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Projects/2020-02-02/java_crawler/</loc>
+    
+    <lastmod>2020-02-03T03:55:28.565Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Projects/2020-02-02/java_maze/</loc>
+    
+    <lastmod>2020-02-03T03:55:17.297Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Notes/Java/2020-02-03/java_stringbuffer/</loc>
+    
+    <lastmod>2020-02-03T03:54:56.589Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/about/index.html</loc>
+    
+    <lastmod>2020-02-03T03:45:49.290Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iris-cyy.github.io/archives/index.html</loc>
     
     <lastmod>2020-02-02T09:38:15.043Z</lastmod>
@@ -12,27 +82,6 @@
     <loc>https://iris-cyy.github.io/Tricks/2020-02-02/git/</loc>
     
     <lastmod>2020-02-02T09:33:32.165Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/Projects/2020-02-02/java_maze/</loc>
-    
-    <lastmod>2020-02-02T09:19:40.278Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/Projects/2020-02-02/java_crawler/</loc>
-    
-    <lastmod>2020-02-02T08:52:34.653Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/Projects/2020-02-01/mua_interpreter/</loc>
-    
-    <lastmod>2020-02-02T07:59:31.067Z</lastmod>
     
   </url>
   
@@ -103,13 +152,6 @@
     <loc>https://iris-cyy.github.io/Notes/ADS/2020-01-27/inverted_file_index/</loc>
     
     <lastmod>2020-01-27T04:38:24.375Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/about/index.html</loc>
-    
-    <lastmod>2020-01-27T04:30:39.445Z</lastmod>
     
   </url>
   
@@ -201,13 +243,6 @@
     <loc>https://iris-cyy.github.io/Notes/ADS/2020-01-26/time_complexity/</loc>
     
     <lastmod>2020-01-26T13:49:53.098Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/test/2020-01-26/hello_world/</loc>
-    
-    <lastmod>2020-01-26T12:18:34.447Z</lastmod>
     
   </url>
   
