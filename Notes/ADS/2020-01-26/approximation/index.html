@@ -393,6 +393,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/ADS/2020-01-26/approximation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/ADS/2020-01-26/approximation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -428,22 +438,19 @@
       
 
       
-        <h2 id="Approximation-ratio"><a href="#Approximation-ratio" class="headerlink" title="Approximation ratio"></a>Approximation ratio</h2><p>【Definition】 An algorithm has an <strong>approximation ratio</strong> of  $\rho​$(n) if, for any input of size n, the cost C of the solution produced by the algorithm is within a factor of $\rho​$ (n) of the cost C* of an optimal solution:  $max( \frac{C}{C^*}, \frac{C^*}{C}) \leq \rho(n)​$ </p>
+        <h2 id="Approximation-ratio"><a href="#Approximation-ratio" class="headerlink" title="Approximation ratio"></a>Approximation ratio</h2><p>【Definition】 An algorithm has an <strong>approximation ratio</strong> of  $\rho​$(n) if, for any input of size n, the cost C of the solution produced by the algorithm is within a factor of $\rho​$ (n) of the cost C<em> of an optimal solution:  $max( \frac{C}{C^\</em>}, \frac{C^*}{C}) \leq \rho(n)​$ </p>
 <p>If an algorithm achieves an approximation ratio of $\rho​$(n), we call it a <strong>$\rho​$(n)-approximation algorithm</strong>.</p>
 <p>【Definition】 An <strong>approximation scheme</strong> for an optimization problem is an approximation algorithm that takes as input not only an instance of the problem, but also a value $\epsilon​$ &gt; 0 such that for any fixed $\epsilon​$, the scheme is a <strong>(1+ $\epsilon​$)-approximation algorithm</strong>.<br>We say that an approximation scheme is a <strong>polynomial-time approximation scheme (PTAS)</strong> if for any fixed $\epsilon​$ &gt; 0, the scheme runs in time polynomial in the size n of its input instance.<br>eg. $O((1/ \epsilon)^2 n^3)​$ –&gt; FPTAS (fully …) ,  $O(n^{\epsilon/2})​$, …<br><br></p>
 <h2 id="Approximate-Bin-Packing"><a href="#Approximate-Bin-Packing" class="headerlink" title="Approximate Bin Packing"></a>Approximate Bin Packing</h2><h3 id="Online-Algorithms"><a href="#Online-Algorithms" class="headerlink" title="Online Algorithms"></a>Online Algorithms</h3><h4 id="next-fit"><a href="#next-fit" class="headerlink" title="next fit"></a>next fit</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NextFit</span> <span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;   read item1;</span><br><span class="line">    <span class="keyword">while</span> ( read item2 ) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( item2 can be packed in the same bin as item1 )</span><br><span class="line">	place item2 in the bin;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">	create a <span class="keyword">new</span> bin <span class="keyword">for</span> item2;</span><br><span class="line">        item1 = item2;</span><br><span class="line">    &#125; <span class="comment">/* end-while */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Let M be the optimal number of bins required to pack a list I of items.  Then next fit never uses more than 2M – 1 bins.  There exist sequences such that next fit uses 2M  – 1 bins.</p>
 <h4 id="first-fit"><a href="#first-fit" class="headerlink" title="first fit"></a>first fit</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FirstFit</span> <span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="keyword">while</span> ( read item ) &#123;</span><br><span class="line">        scan <span class="keyword">for</span> the first bin that is large enough <span class="keyword">for</span> item;</span><br><span class="line">        <span class="keyword">if</span> ( found )</span><br><span class="line">	place item in that bin;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">	create a <span class="keyword">new</span> bin <span class="keyword">for</span> item;</span><br><span class="line">    &#125; <span class="comment">/* end-while */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Let M be the optimal number of bins required to pack a list I of items.  Then first fit never uses more than 17M / 10 bins.  There exist sequences such that first fit uses 17(M – 1) / 10 bins.</p>
-<h4 id="best-fit"><a href="#best-fit" class="headerlink" title="best fit"></a>best fit</h4><br>
-
+<h4 id="best-fit"><a href="#best-fit" class="headerlink" title="best fit"></a>best fit</h4><p><br></p>
 <h3 id="Off-line-Algorithm"><a href="#Off-line-Algorithm" class="headerlink" title="Off-line Algorithm"></a>Off-line Algorithm</h3><h4 id="first-fit-decreasing"><a href="#first-fit-decreasing" class="headerlink" title="first fit decreasing"></a>first fit decreasing</h4><p>Let M be the optimal number of bins required to pack a list I of items.  Then first fit decreasing never uses more than 11M / 9 + 6/9 bins.  There exist sequences such that first fit decreasing uses 11M / 9 + 6/9 bins.</p>
-<h4 id="best-fit-decreasing"><a href="#best-fit-decreasing" class="headerlink" title="best fit decreasing"></a>best fit decreasing</h4><br>
-
+<h4 id="best-fit-decreasing"><a href="#best-fit-decreasing" class="headerlink" title="best fit decreasing"></a>best fit decreasing</h4><p><br></p>
 <hr>
 <h3 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h3><p><img src="/images/ads/approximation/ex1.png" alt="ex1"></p>
-<br>
-
+<p><br></p>
 
       
     </div>
@@ -572,7 +579,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -851,6 +858,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

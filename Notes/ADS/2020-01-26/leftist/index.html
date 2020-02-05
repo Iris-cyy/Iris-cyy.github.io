@@ -394,6 +394,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/ADS/2020-01-26/leftist/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/ADS/2020-01-26/leftist/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -432,13 +442,10 @@
         <p>二叉堆的合并需要耗费O(N)的代价，而leftist heap只需O(logN)</p>
 <h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>Npl (X)<br>The null path length, Npl(X), of any node X is the length of the shortest path from X to a node without two children. Define Npl(NULL) = –1.<br>也就是说，npl是从该节点到第一个没有两个孩子的子节点的路径长度。</p>
 <h2 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PriorityQueue  <span class="title">Merge</span> <span class="params">( PriorityQueue H1, PriorityQueue H2 )</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">if</span> ( H1 == <span class="literal">NULL</span> )   <span class="keyword">return</span> H2;  </span><br><span class="line">    <span class="keyword">if</span> ( H2 == <span class="literal">NULL</span> )   <span class="keyword">return</span> H1;  </span><br><span class="line">    <span class="keyword">if</span> ( H1-&gt;Element &lt; H2-&gt;Element )  <span class="keyword">return</span> Merge1( H1, H2 );</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> Merge1( H2, H1 );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PriorityQueue</span><br><span class="line">Merge1( PriorityQueue H1, PriorityQueue H2 )</span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">if</span> ( H1-&gt;Left == <span class="literal">NULL</span> )     <span class="comment">/* single node */</span></span><br><span class="line">        H1-&gt;Left = H2;  <span class="comment">/* H1-&gt;Right is already NULL </span></span><br><span class="line"><span class="comment">                        and H1-&gt;Npl is already 0 */</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        H1-&gt;Right = Merge( H1-&gt;Right, H2 );     <span class="comment">/* Step 1 &amp; 2 */</span></span><br><span class="line">        <span class="keyword">if</span> ( H1-&gt;Left-&gt;Npl &lt; H1-&gt;Right-&gt;Npl )</span><br><span class="line">            SwapChildren( H1 ); <span class="comment">/* Step 3 */</span></span><br><span class="line">        H1-&gt;Npl = H1-&gt;Right-&gt;Npl + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="comment">/* end else */</span></span><br><span class="line">    <span class="keyword">return</span> H1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-
+<p><br></p>
 <h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><p><img src="/images/ads/leftist/ex1.png" alt="ex1"></p>
-<img src="/images/ads/letist/ex2.png" width=60%>
-
-<br>
-
+<p><img src="/images/ads/letist/ex2.png" width=60%></p>
+<p><br></p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://blog.csdn.net/Woolseyyy/article/details/51571024" target="_blank" rel="noopener">https://blog.csdn.net/Woolseyyy/article/details/51571024</a></p>
 
@@ -569,7 +576,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -848,6 +855,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

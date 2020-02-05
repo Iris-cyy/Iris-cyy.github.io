@@ -394,6 +394,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/ADS/2020-01-27/amortized/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/ADS/2020-01-27/amortized/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -438,11 +448,11 @@
 <p>合并两个skew heap摊还时间为O(logN)<br><br></p>
 <hr>
 <h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><p><img src="/images/ads/amortized/ex1.png" alt="ex1"><br>C<br>A light child has at most half weight of its parents. Thus if there are k light nodes not including x along the path from x to y, $w(y) \leq w(x)/2^k$ ( $k \leq log \frac{w(x)}{w(y)}$ )<br>$\Phi$ = the total number of right heavy nodes it contains<br>By lemma 2, any path in a skew heap contains only O(logn) light nodes<br>Any heavy node on such a path is converted from right to left by causing a drop of one in the potential<br>Two heaps $h_1$ and $h_2$, containing $n_1$ and $n_2$ items<br>$n = n_1 + n_2$<br>By lemma 1, the total number of light nodes is at most $2 \lfloor logn \rfloor -1$<br>Let $k_1$ and $k_2$ be the number of heavy nodes on the right path of $h_1$ and $h_2$, and $k_3$ be the number of nodes that become right heavy children of nodes on the merge path.<br>By lemma 2, $k_3 \leq \lfloor logn \rfloor$<br>the number of node on the merge path is at most<br>$c_i \leq 2+ \lfloor logn_1 \rfloor + k_1 + \lfloor logn_2 \rfloor + k_2 \leq  1 + 2 \lfloor logn \rfloor + k_1 + k_2$<br>The increase in the potential caused by the merge is $\Delta \Phi = k_3 - k_2 - k_1 = \lfloor logn \rfloor - k_1 - k_2$<br>This the amortized is at most $3 \lfloor logn \rfloor + 1​$</p>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://blog.csdn.net/Woolseyyy/article/details/51517446" target="_blank" rel="noopener">https://blog.csdn.net/Woolseyyy/article/details/51517446</a></p>
-<br>
+<p><br></p>
+
       
     </div>
     
@@ -570,7 +580,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -849,6 +859,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

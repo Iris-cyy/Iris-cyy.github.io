@@ -395,6 +395,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/ADS/2020-01-27/inverted_file_index/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/ADS/2020-01-27/inverted_file_index/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -431,17 +441,14 @@
 
       
         <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">while ( read a document D ) &#123;</span><br><span class="line">    while ( read a term T in D ) &#123;</span><br><span class="line">        if ( Find( Dictionary, T ) &#x3D;&#x3D; false )</span><br><span class="line">            Insert( Dictionary, T );</span><br><span class="line">        Get T’s posting list;</span><br><span class="line">        Insert a node to T’s posting list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Write the inverted index to disk;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BlockCnt &#x3D; 0; </span><br><span class="line">while ( read a document D ) &#123;</span><br><span class="line">  while ( read a term T in D ) &#123;</span><br><span class="line">    if ( out of memory ) &#123;</span><br><span class="line">      Write BlockIndex[BlockCnt] to disk;</span><br><span class="line">      BlockCnt ++;</span><br><span class="line">      FreeMemory;</span><br><span class="line">    &#125;</span><br><span class="line">    if ( Find( Dictionary, T ) &#x3D;&#x3D; false )</span><br><span class="line">      Insert( Dictionary, T );</span><br><span class="line">    Get T’s posting list;</span><br><span class="line">    Insert a node to T’s posting list;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">for ( i&#x3D;0; i&lt;BlockCnt; i++ )</span><br><span class="line">  Merge( InvertedIndex, BlockIndex[i] );</span><br></pre></td></tr></table></figure>
-<br>
-
+<p><br></p>
 <h2 id="Distributed-Index"><a href="#Distributed-Index" class="headerlink" title="Distributed Index"></a>Distributed Index</h2><ul>
 <li><p>Term-partitioned</p>
-<img src="/images/ads/ifi/ind1.png" width=50%>
+<p><img src="/images/ads/ifi/ind1.png" width=50%></p>
 </li>
 <li><p>Document-partitioned index</p>
-<img src="/images/ads/ifi/ind2.png" width=50%>
-
+<p><img src="/images/ads/ifi/ind2.png" width=50%></p>
 </li>
 </ul>
 <h2 id="Measures-for-a-Search-Engine"><a href="#Measures-for-a-Search-Engine" class="headerlink" title="Measures for a Search Engine"></a>Measures for a Search Engine</h2><ul>
@@ -458,8 +465,7 @@
 <ul>
 <li>How relevant is the answer set?</li>
 </ul>
-<br>
-
+<p><br></p>
 <table>
 <thead>
 <tr>
@@ -468,7 +474,8 @@
 <th><strong>Irrelevant</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>Retrieved</strong></td>
 <td>$R_R$</td>
 <td>$I_R$</td>
@@ -478,13 +485,13 @@
 <td>$R_N$</td>
 <td>$I_N$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>Precision:  $P=R_R/(R_R+I_R)$</p>
 <p>Recall:  $R=R_R/(R_R+R_N)$<br><br></p>
 <hr>
 <h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><p><img src="/images/ads/ifi/ex1.png" alt="ex1"></p>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://blog.csdn.net/Woolseyyy/article/details/51559937" target="_blank" rel="noopener">https://blog.csdn.net/Woolseyyy/article/details/51559937</a></p>
 
@@ -615,7 +622,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -894,6 +901,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

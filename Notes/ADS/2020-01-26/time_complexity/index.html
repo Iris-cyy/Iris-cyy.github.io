@@ -83,12 +83,12 @@
 
 
 
-<meta name="description" content="Time Complexity BST AVL Splay RB-tree B+ tree(M)    Search O(n) O(logn) O(logn) O(logn) $O(log_{M&#x2F;2}n)$   Insert O(n) O(logn) O(logn) O(logn) $O(\frac{M}{logM}logn)$   Delete O(n) O(logn) O(logn) O">
+<meta name="description" content="Time Complexity BST AVL Splay RB-tree B+ tree(M)     Search O(n) O(logn) O(logn) O(logn) $O(log_{M&#x2F;2}n)$   Insert O(n) O(logn) O(logn) O(logn) $O(\frac{M}{logM}logn)$   Delete O(n) O(logn) O(logn)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【ADS】Time Complexity">
 <meta property="og:url" content="https://iris-cyy.github.io/Notes/ADS/2020-01-26/time_complexity/index.html">
 <meta property="og:site_name" content="花落知多少">
-<meta property="og:description" content="Time Complexity BST AVL Splay RB-tree B+ tree(M)    Search O(n) O(logn) O(logn) O(logn) $O(log_{M&#x2F;2}n)$   Insert O(n) O(logn) O(logn) O(logn) $O(\frac{M}{logM}logn)$   Delete O(n) O(logn) O(logn) O">
+<meta property="og:description" content="Time Complexity BST AVL Splay RB-tree B+ tree(M)     Search O(n) O(logn) O(logn) O(logn) $O(log_{M&#x2F;2}n)$   Insert O(n) O(logn) O(logn) O(logn) $O(\frac{M}{logM}logn)$   Delete O(n) O(logn) O(logn)">
 <meta property="article:published_time" content="2020-01-26T13:48:59.000Z">
 <meta property="article:modified_time" content="2020-01-26T13:49:53.098Z">
 <meta property="article:author" content="Irisssy">
@@ -391,6 +391,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/ADS/2020-01-26/time_complexity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/ADS/2020-01-26/time_complexity/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -437,7 +447,8 @@
 <th>B+ tree(M)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Search</td>
 <td>O(n)</td>
 <td>O(logn)</td>
@@ -461,7 +472,8 @@
 <td>O(logn)</td>
 <td>$O(\frac{M}{logM}logn)$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
       
     </div>
@@ -581,7 +593,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -844,6 +856,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

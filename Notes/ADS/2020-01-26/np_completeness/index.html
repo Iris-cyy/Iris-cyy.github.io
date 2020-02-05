@@ -396,6 +396,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/ADS/2020-01-26/np_completeness/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/ADS/2020-01-26/np_completeness/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -443,22 +453,17 @@
 </ol>
 <p>所以P问题一定是NP问题，NPC问题也一定是NP问题，NPC问题也一定是NP Hard问题，但NP Hard问题不一定是NP问题。</p>
 <p>$L \in P \Rightarrow \bar L \in P$<br>$L \in NP \Rightarrow \bar L \in co$-$NP$</p>
- <img src="/images/ads/npc/weien.png" width=50%>
-
-
-
-<h2 id="NP-complete"><a href="#NP-complete" class="headerlink" title="NP-complete:"></a>NP-complete:</h2> <img src="/images/ads/npc/npc.png" width=40%>
-<br>
-
+<p> <img src="/images/ads/npc/weien.png" width=50%></p>
+<h2 id="NP-complete"><a href="#NP-complete" class="headerlink" title="NP-complete:"></a>NP-complete:</h2><p> <img src="/images/ads/npc/npc.png" width=40%><br><br></p>
 <hr>
 <h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises:"></a>Exercises:</h2><p><img src="/images/ads/npc/ex1.png" alt="ex1"></p>
 <p><img src="/images/ads/npc/ex2.png" alt="ex2"></p>
 <p>NP + NP-hand -&gt; NP-complete</p>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">http://www.matrix67.com/blog/archives/105</a></p>
-<br>
+<p><br></p>
+
       
     </div>
     
@@ -586,7 +591,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -865,6 +870,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
