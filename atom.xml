@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iris-cyy.github.io/"/>
-  <updated>2020-02-08T15:28:19.911Z</updated>
+  <updated>2020-02-08T15:29:18.555Z</updated>
   <id>https://iris-cyy.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>pat-1010</title>
-    <link href="https://iris-cyy.github.io//uncategorized/2020-02-08/null/"/>
-    <id>https://iris-cyy.github.io//uncategorized/2020-02-08/null/</id>
+    <title>【PAT】1010 Radix</title>
+    <link href="https://iris-cyy.github.io//PAT/Advanced/2020-02-08/pat_1010/"/>
+    <id>https://iris-cyy.github.io//PAT/Advanced/2020-02-08/pat_1010/</id>
     <published>2020-02-08T03:22:27.000Z</published>
-    <updated>2020-02-08T15:28:19.911Z</updated>
+    <updated>2020-02-08T15:29:18.555Z</updated>
     
     <content type="html"><![CDATA[<h2 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h2><p>Given a pair of positive integers, for example, 6 and 110, can this equation 6 = 110 be true? The answer is <code>yes</code>, if 6 is a decimal number and 110 is a binary number.</p><p>Now for any pair of positive integers $N_1$ and $N_2$, your task is to find the radix of one number while that of the other is given.</p><h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case occupies a line which contains 4 positive integers:</p><blockquote><p>$N_1$ $N_2$ tag radix</p></blockquote><p>Here <code>N1</code> and <code>N2</code> each has no more than 10 digits. A digit is less than its radix and is chosen from the set { 0-9, <code>a</code>-<code>z</code> } where 0-9 represent the decimal numbers 0-9, and <code>a</code>-<code>z</code> represent the decimal numbers 10-35. The last number <code>radix</code> is the radix of <code>N1</code> if <code>tag</code> is 1, or of <code>N2</code> if <code>tag</code> is 2.</p><h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each test case, print in one line the radix of the other number so that the equation <code>N1</code> = <code>N2</code> is true. If the equation is impossible, print <code>Impossible</code>. If the solution is not unique, output the smallest possible radix.</p><h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1:"></a>Sample Input 1:</h3><blockquote><p>6 110 1 10</p></blockquote><h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output 1:"></a>Sample Output 1:</h3><blockquote><p>2</p></blockquote><h3 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2:"></a>Sample Input 2:</h3><blockquote><p>1 ab 1 2</p></blockquote><h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2:"></a>Sample Output 2:</h3><blockquote><p>Impossible</p></blockquote><p><br></p><hr><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>这题的意思和解题思路很简单，但是巨坑，过了很多次才过去。</p><p>题目意思大概就是进制转换，需要注意的有以下几个点</p><ul><li>可能会出现重复的情况，这种情况下输出最小的radix。例如<code>8 8 1 10</code>这组输入，可以是9以上任何进制，这时输出9。要注意的是，只有输入的未知进制的数是一位数的时候可能会出现这种情况。</li><li>long long</li><li>溢出</li><li>二分</li></ul>]]></content>
     
@@ -34,6 +34,12 @@
     
     </summary>
     
+      <category term="PAT" scheme="https://iris-cyy.github.io/categories/PAT/"/>
+    
+      <category term="Advanced" scheme="https://iris-cyy.github.io/categories/PAT/Advanced/"/>
+    
+    
+      <category term="PAT" scheme="https://iris-cyy.github.io/tags/PAT/"/>
     
   </entry>
   
