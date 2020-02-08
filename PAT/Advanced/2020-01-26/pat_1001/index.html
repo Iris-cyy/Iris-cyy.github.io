@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="花落知多少">
 <meta property="og:description" content="ProblemCalculate a+b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits). Input Specification:Each inp">
 <meta property="article:published_time" content="2020-01-26T12:02:26.000Z">
-<meta property="article:modified_time" content="2020-02-04T13:34:28.438Z">
+<meta property="article:modified_time" content="2020-02-08T02:53:42.299Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="PAT">
 <meta name="twitter:card" content="summary">
@@ -448,6 +448,8 @@
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>解题思路很简单，因为输入的数字绝对值最大是$10^6$，因此和最大是七位数。根据和的位数向输出中增加”,”。这里需要注意的是c++中<code>substr</code>和<code>substring</code>函数的区别（一开始弄错了导致debug了很久）</p>
 <p><code>s.substr(pos, n)</code>：返回一个string，包含s中从pos开始的n个字符的拷贝（pos的默认值是0，n的默认值是s.size() - pos，即不加参数会默认拷贝整个s）<br><code>s.substring(start, end)</code>：将返回一个包含从 start 到最后（不包含 end ）的子字符串的字符串</p>
 <p>更加详细的区别和用法可以参见<a href="https://blog.csdn.net/monk1992/article/details/81702763" target="_blank" rel="noopener">这篇博客</a></p>
+<p>但是必须要说一下<code>substring</code>其实不是c++的标准函数，不过在java里有。</p>
+<p>所以用c++的话还是用<code>substr</code>（java写多了下手就是<code>substring</code> qaq）</p>
 <p>代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    c = a + b;</span><br><span class="line">    <span class="built_in">string</span> output = to_string(c);</span><br><span class="line">    <span class="keyword">int</span> length = output.length();</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">abs</span>(c) &gt;= <span class="number">1000</span> &amp;&amp; <span class="built_in">abs</span>(c) &lt; <span class="number">1000000</span>)&#123;</span><br><span class="line">        output = output.substr(<span class="number">0</span>, length<span class="number">-3</span>) + <span class="string">","</span> + output.substr(length<span class="number">-3</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">abs</span>(c) &gt;= <span class="number">1000000</span>)&#123;</span><br><span class="line">        output = output.substr(<span class="number">0</span>, length<span class="number">-6</span>) + <span class="string">","</span> + output.substr(length<span class="number">-6</span>, <span class="number">3</span>) + <span class="string">","</span> + output.substr(length<span class="number">-3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; output &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
@@ -573,7 +575,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
