@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://iris-cyy.github.io/images/projects/java-maze/clip_image024.gif">
 <meta property="og:image" content="https://iris-cyy.github.io/images/projects/java-maze/clip_image026.gif">
 <meta property="article:published_time" content="2020-02-02T08:54:23.000Z">
-<meta property="article:modified_time" content="2020-02-03T03:55:17.297Z">
+<meta property="article:modified_time" content="2020-02-22T12:40:46.970Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Projects">
 <meta property="article:tag" content="Java">
@@ -456,16 +456,10 @@
 </ol>
 <h2 id="总体设计"><a href="#总体设计" class="headerlink" title="总体设计"></a>总体设计</h2><h3 id="功能模块设计"><a href="#功能模块设计" class="headerlink" title="功能模块设计"></a>功能模块设计</h3><p>本程序需实现的主要功能有：</p>
 <ol>
-<li><p>使用Socket进行通信，</p>
-</li>
-<li><p>根据从bib中提取得到的文献元数据链接，访问网页并获取详细信息</p>
-</li>
-<li><p>从元数据链接中访问PDF下载链接，下载指定文献的PDF文档</p>
-</li>
-<li><p>根据文献详细信息的各字段建立索引</p>
-</li>
-<li><p>建立搜索引擎，根据用户输入的字段类别和关键字，搜索相关信息</p>
-</li>
+<li>使用Socket进行通信，服务器开启之后，客户端可以申请连接。</li>
+<li>客户端与服务器之间实现信息交换。</li>
+<li>使用GUI显示对手以及自己的游戏界面。</li>
+<li>多线程操作，服务器可以同时管理多个客户端</li>
 </ol>
 <p>程序的总体功能如图1所示：</p>
 <p> <img src="/images/projects/java-maze/clip_image002.gif" alt="img"></p>
