@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="花落知多少">
 <meta property="og:description" content="编码ASCII文本编码，二进制编码表示字母、数字、专门符号 Unicode业界标准，跨语言、跨平台（可表示汉字） 可变字节不可变长 用”\u”表示Unicode码 Unicode字符与编码对照表 UTF-8针对Unicode的可变长度字符编码 并非存储器中编码，使用时把Unicode字符转换为UTF-8 每一个ASCII字符有一个UTF-8编码，正好与8位ASCII编码一样 Python3默认为U">
 <meta property="article:published_time" content="2020-02-25T09:50:55.000Z">
-<meta property="article:modified_time" content="2020-02-25T10:05:27.858Z">
+<meta property="article:modified_time" content="2020-02-26T03:44:13.720Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Python">
@@ -445,6 +445,8 @@
 <p>并非存储器中编码，使用时把Unicode字符转换为UTF-8</p>
 <p>每一个ASCII字符有一个UTF-8编码，正好与8位ASCII编码一样</p>
 <p><u>Python3默认为UTF-8编码</u></p>
+<p>输出编码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s.encode(<span class="string">"utf-8"</span>)) <span class="comment"># s为字符串，输出的是每个字符对应的utf-8编码连起来</span></span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>面向对象</p>
 <p>解释型语言</p>
