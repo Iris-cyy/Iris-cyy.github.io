@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iris-cyy.github.io/about/index.html</loc>
+    
+    <lastmod>2020-02-29T06:10:25.212Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iris-cyy.github.io/Tricks/2020-02-28/science_online/</loc>
     
     <lastmod>2020-02-29T04:59:45.698Z</lastmod>
@@ -341,13 +348,6 @@
     <loc>https://iris-cyy.github.io/Notes/Java/2020-02-03/java_stringbuffer/</loc>
     
     <lastmod>2020-02-03T03:54:56.589Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/about/index.html</loc>
-    
-    <lastmod>2020-02-03T03:45:49.290Z</lastmod>
     
   </url>
   
