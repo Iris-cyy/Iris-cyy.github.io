@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Notes,CP," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="花落知多少" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Scanning Process Identifier: x y11 elsen_i00 Integer: 2 1000 -500 5L Floating point: 2.0 0.00020 .02 1. 1e5 0.e-10 String: “x” “He said, \“Are you?\”” Comment: &#x2F; don’t change this &#x2F; Keyword: if else">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Compilation Principle】t Scanning (Lexical Analysis)">
+<meta property="og:url" content="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_scanning/index.html">
+<meta property="og:site_name" content="花落知多少">
+<meta property="og:description" content="Scanning Process Identifier: x y11 elsen_i00 Integer: 2 1000 -500 5L Floating point: 2.0 0.00020 .02 1. 1e5 0.e-10 String: “x” “He said, \“Are you?\”” Comment: &#x2F; don’t change this &#x2F; Keyword: if else">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308123221931.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308123456675.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308123721443.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308125010856.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308184915152.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308205252875.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/20160927164801462">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/20160927182858046">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/20160927185627441">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308212454788.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308213027672.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308213842871.png">
+<meta property="article:published_time" content="2020-03-04T09:21:17.000Z">
+<meta property="article:modified_time" content="2020-03-10T05:12:23.180Z">
+<meta property="article:author" content="Irisssy">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="CP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308123221931.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'AWI44TKCWF',
+      apiKey: '47152bafbd084f0e2f14756524feff94',
+      indexName: 'blogIndex_NAME',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_scanning/"/>
+
+
+
+
+
+  <title>【Compilation Principle】t Scanning (Lexical Analysis) | 花落知多少</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98ba9ea0a4c9adce8b273e137e8bcf3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">花落知多少</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Nice to meet you :)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_scanning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irisssy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花落知多少">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Compilation Principle】t Scanning (Lexical Analysis)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-04T17:21:17+08:00">
+                2020-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/Compilation-Principle/" itemprop="url" rel="index">
+                    <span itemprop="name">Compilation Principle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/Compilation-Principle/2020-03-04/cp_scanning/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/Compilation-Principle/2020-03-04/cp_scanning/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Notes/Compilation-Principle/2020-03-04/cp_scanning/" class="leancloud_visitors" data-flag-title="【Compilation Principle】t Scanning (Lexical Analysis)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/comp/com-prin2.assets/image-20200308123221931.png" alt="image-20200308123221931" style="zoom:50%;" /></p>
+<h2 id="Scanning-Process"><a href="#Scanning-Process" class="headerlink" title="Scanning Process"></a>Scanning Process</h2><ul>
+<li>Identifier: x y11 elsen_i00</li>
+<li>Integer: 2 1000 -500 5L</li>
+<li>Floating point: 2.0 0.00020 .02 1. 1e5 0.e-10</li>
+<li>String: “x” “He said, \“Are you?\””</li>
+<li>Comment: /<strong> don’t change this </strong>/</li>
+<li>Keyword: if else while break</li>
+<li>Symbol: + * { } ++ &lt; &lt;&lt; [ ] &gt;=</li>
+</ul>
+<p><br></p>
+<h2 id="正则表达式（Regular-Expression-RE）"><a href="#正则表达式（Regular-Expression-RE）" class="headerlink" title="正则表达式（Regular Expression, RE）"></a>正则表达式（Regular Expression, RE）</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>通过递归定义</p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308123456675.png" alt="image-20200308123456675" style="zoom: 50%;" /></p>
+<p>其中运算的优先级：alternation &lt; concatenation &lt; repetition(R*)</p>
+<p>RE的表达形式不唯一</p>
+<p>RE不可计数（不可记忆）</p>
+<p>eg. </p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308123721443.png" alt="image-20200308123721443" style="zoom:50%;" /></p>
+<p>Regular Set: RE 的集合（正规表达式封闭）</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ul>
+<li><p><code>R+</code> : one or more strings from L(R): <code>R(R*)</code></p>
+</li>
+<li><p><code>R?</code>: optional R（一次或零次）: <code>(R|ε)</code> </p>
+</li>
+<li><p><code>[abce]</code>: one of the listed characters: <code>(a|b|c|e)</code></p>
+</li>
+<li><p><code>[a-z]</code>: one character from this range: <code>(a|b|c|d|e|…|y|z)</code> </p>
+<p>eg. [A-Z a-z]表示包含大小写的所有字母</p>
+</li>
+<li><p><code>[^ab]</code>: anything but one of the listed chars</p>
+</li>
+<li><p><code>[^a-z]</code>: one character not from this range</p>
+</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p><strong>Numbers</strong><br>自然数：<em>nat</em> = [0-9]+<br>有符号自然数：<em>signedNat</em> = (+|-)?<em>nat</em><br>实数（可能包含小数点or科学计数法）：<em>number</em> = <em>signedNat</em>(“．”” <em>nat</em>)? (E <em>signedNat</em>)?</p>
+</li>
+<li><p><strong>Reserved Words and Identifiers</strong><br>保留字（一般枚举表示）：<em>reserved</em> = if | while | do |………<br>字母：<em>letter</em> = [a-z A-Z]<br>数字：<em>digit</em> = [0-9]<br>标识符：<em>identifier</em> = <em>letter</em> (<em>letter</em> | <em>digit</em>)*</p>
+<blockquote>
+<p>$reserved \subset iderntifier$</p>
+</blockquote>
+</li>
+<li><p><strong>Comment</strong></p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308125010856.png" alt="image-20200308125010856" style="zoom:55%;" /></p>
+</li>
+</ul>
+<h3 id="一些原则"><a href="#一些原则" class="headerlink" title="一些原则"></a>一些原则</h3><h4 id="处理歧义"><a href="#处理歧义" class="headerlink" title="处理歧义"></a>处理歧义</h4><ul>
+<li><p>keyword优先</p>
+<p>如果一个标识符可以是keyword，就优先认为它是keyword（如if）</p>
+</li>
+<li><p>最长子串匹配</p>
+<p>如果能被当成是一个identifier，就不会当成多个（例如iff，可以是iff或者if+f，认为是iff）</p>
+<p>明确认为属于其他标记作为分隔符</p>
+</li>
+</ul>
+<h4 id="空白符"><a href="#空白符" class="headerlink" title="空白符"></a>空白符</h4><p>用于分割，没有返回</p>
+<p><em>whitespace</em> = ( <em>newline</em> | <em>blank</em> | <em>tab</em> | <em>comment</em> )+</p>
+<h4 id="Lookahead"><a href="#Lookahead" class="headerlink" title="Lookahead"></a>Lookahead</h4><p>缓冲区内可能存在下一个输入的符号，要标记回溯位置</p>
+<p><br></p>
+<h2 id="有限自动机（Finite-Automata-FA）"><a href="#有限自动机（Finite-Automata-FA）" class="headerlink" title="有限自动机（Finite Automata, FA）"></a>有限自动机（Finite Automata, FA）</h2><p>状态个数有限</p>
+<p>state 可以重复</p>
+<ul>
+<li><p><strong>transition</strong>：标记两个状态之间的转换</p>
+</li>
+<li><p><strong>start state</strong>：开始状态前要加无标签箭头</p>
+</li>
+<li><strong>accepting state</strong>：用双环表示接收（结束）状态（单环表示非接收状态），转换可以到接收态结束</li>
+</ul>
+<p>有的状态不接受一些字符，即接收了会进入error state，可以不在图中表示出来</p>
+<h3 id="确定型有限自动机（Deterministic-Finite-Automation-DFA）"><a href="#确定型有限自动机（Deterministic-Finite-Automation-DFA）" class="headerlink" title="确定型有限自动机（Deterministic Finite Automation, DFA）"></a>确定型有限自动机（Deterministic Finite Automation, DFA）</h3><p>状态转移目标确定（唯一）</p>
+<p>状态转移时接收<u>一个</u>符号（可以用名字表示）</p>
+<p>$T:S \times \sum \rightarrow S$，$T(s,c)$ 必须对<u>每一个</u>s和c都有值（error state可以不画在图中）</p>
+<p><strong>Typical action</strong></p>
+<ol>
+<li>making an transition：从输入缓冲区得到字符，得到字符串（字符串值或者词义）</li>
+<li>reaching an accepting state：将token和相关属性（字符串内容、数字值等）返回给词法分析器</li>
+<li>reaching an error state：回退（之前分析的可能不对）或者生成error token</li>
+</ol>
+<p>eg.</p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308184915152.png" alt="image-20200308184915152" style="zoom:60%;" /></p>
+<h3 id="非确定型有限自动机（Nondeterministic-Finite-Automaton-NFA）"><a href="#非确定型有限自动机（Nondeterministic-Finite-Automaton-NFA）" class="headerlink" title="非确定型有限自动机（Nondeterministic Finite Automaton, NFA）"></a>非确定型有限自动机（Nondeterministic Finite Automaton, NFA）</h3><p>NFA与DFA功能等价，可以相互转换</p>
+<p>主要区别在于，NFA有 $\epsilon - transition$（不消耗输入的转移）</p>
+<p>$\epsilon - transition$ 的两个主要作用：</p>
+<ol>
+<li>选择功能（不用合并新来的状态，而是增加一个新的状态）</li>
+<li>匹配外部输入的空串</li>
+</ol>
+<p>NFA的定义包括转换关系（不一定是函数）T、开始状态s0、接收状态A、接受语言L(M)</p>
+<p>表达比较灵活，可以有变数（与之对应的是，可能会影响分析效率）</p>
+<p><br></p>
+<h2 id="【IMPORTANT】从RE到DFA的转换"><a href="#【IMPORTANT】从RE到DFA的转换" class="headerlink" title="【IMPORTANT】从RE到DFA的转换"></a>【IMPORTANT】从RE到DFA的转换</h2><p><img src="/images/comp/com-prin2.assets/image-20200308205252875.png" alt="image-20200308205252875" style="zoom: 50%;" /></p>
+<h3 id="RE-gt-NFA"><a href="#RE-gt-NFA" class="headerlink" title="RE -&gt; NFA"></a>RE -&gt; NFA</h3><h4 id="Top-down"><a href="#Top-down" class="headerlink" title="Top-down"></a>Top-down</h4><p><img src="/images/comp/com-prin2.assets/20160927164801462" alt="img" style="zoom: 80%;" /></p>
+<h4 id="Thompson’s-construction-Bottom-up"><a href="#Thompson’s-construction-Bottom-up" class="headerlink" title="Thompson’s construction (Bottom-up)"></a>Thompson’s construction (Bottom-up)</h4><p>对于单个字符，构造一个如下图所示的转换图，作为一个单元：</p>
+<p><img src="/images/comp/com-prin2.assets/20160927182858046" alt="a" style="zoom:90%;" /></p>
+<p>在遇到操作符时，所有的处理都针对单元（在下图上用虚线圈表示）：</p>
+<p><img src="/images/comp/com-prin2.assets/20160927185627441" alt="op" style="zoom:90%;" /></p>
+<p>在处理完操作符之后，形成新的单元，然后继续下一次处理（类似递归），直到转换为NFA</p>
+<h3 id="NFA-gt-DFA"><a href="#NFA-gt-DFA" class="headerlink" title="NFA -&gt; DFA"></a>NFA -&gt; DFA</h3><ol>
+<li>先得到每个状态对应的$\epsilon$闭包（当前状态下能够通过$\epsilon$推出的所有状态的集合，先找出该状态的ε边推出的所有状态，再找那些状态的ε边推出的状态，是一个迭代的过程，直到找出一个状态的ε闭包）</li>
+<li>以原NFA的start state作为DFA的start state，对于当前状态中的每一个子状态，对每一个符号做一次推出操作，构造新的状态和推出过程（注意推出的是NFA对应状态的ε闭包，展开求并得到新的状态）</li>
+<li>重复2直到没有新的状态或转换被创建</li>
+<li>DFA中，包含了NFA中accept state的都是accept state</li>
+</ol>
+<blockquote>
+<p> 举个栗子便于理解：</p>
+<p>得到NFA如下图：</p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308212454788.png" alt="image-20200308212454788" style="zoom:80%;" /></p>
+<p>对各状态求ε闭包：</p>
+<p>$\overline 1 = {1,2,3,5,8}$<br>$\overline 2 = {2,3,5}$<br>$\overline 3 = {3}$<br>$\overline 4 = {2,3,4,5,7,8}$<br>$\overline 5 = {5}$<br>$\overline 6 = {2,3,5,6,7,8}$<br>$\overline 7 = {2,3,5,7,8}$<br>$\overline 8 = {8}$<br>$\overline 9 = {9,10,12,14,15,16}$<br>$\overline{10} = {10}$<br>$\overline{11} = {11,16}$<br>$\overline{12} = {12}$<br>$\overline{13} = {13,16}$<br>$\overline{14} = {14,15,16}$<br>$\overline{15} = {15,16}$<br>$\overline{16} = {16}$</p>
+<p>得到新的状态转换表：</p>
+<p>（例如，从S0中各状态通过a：3-&gt;4, 8-&gt;9，所以S0通过a转移到 {$\overline 4, \overline 9$}，展开如表中所示，其他同理）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$S’$</th>
+<th style="text-align:center">$S’_a$</th>
+<th style="text-align:center">$S’_b$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">S0 = {1,2,3,5,8}</td>
+<td style="text-align:center">S1 = {2,3,4,5,7,8,9,10,12,14,15,16}</td>
+<td style="text-align:center">S2 = {2,3,5,6,7,8}</td>
+</tr>
+<tr>
+<td style="text-align:center">S1 = {2,3,4,5,7,8,9,10,12,14,15,16}</td>
+<td style="text-align:center">S3 = {2,3,4,5,7,8,9,10,11,12,14,15,16}</td>
+<td style="text-align:center">S4 = {2,3,5,6,7,8,13,16}</td>
+</tr>
+<tr>
+<td style="text-align:center">S2 = {2,3,5,6,7,8}</td>
+<td style="text-align:center">S1 = {2,3,4,5,7,8,9,10,12,14,15,16}</td>
+<td style="text-align:center">S2 = {2,3,5,6,7,8}</td>
+</tr>
+<tr>
+<td style="text-align:center">S3 = {2,3,4,5,7,8,9,10,11,12,14,15,16}</td>
+<td style="text-align:center">S3 = {2,3,4,5,7,8,9,10,11,12,14,15,16}</td>
+<td style="text-align:center">S4 = {2,3,5,6,7,8,13,16}</td>
+</tr>
+<tr>
+<td style="text-align:center">S4 = {2,3,5,6,7,8,13,16}</td>
+<td style="text-align:center">S3 = {2,3,4,5,7,8,9,10,11,12,14,15,16}</td>
+<td style="text-align:center">S2 = {2,3,5,6,7,8}</td>
+</tr>
+</tbody>
+</table>
+<p>画出DFA：</p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308213027672.png" alt="image-20200308213027672" style="zoom: 60%;" /></p>
+</blockquote>
+<h3 id="DFA的优化（最小化）"><a href="#DFA的优化（最小化）" class="headerlink" title="DFA的优化（最小化）"></a>DFA的优化（最小化）</h3><p>最小化的需求是，每个等价类只能由一个状态来表示，因此这一步要做的就是划分等价类</p>
+<ol>
+<li><p>先根据是否为终止状态分为两类，非终止状态和终止状态</p>
+</li>
+<li><p>在每一类中继续细分，对等价类的要求是，对同一符号，转换到的新状态要属于同一等价类（注意，是同一等价类，可以是该等价类下不同的状态）。因此对于每一类中的每个子状态，对每一个符号进行转换，一旦有转换结果属于不同的类，则将其分在不同的等价类下。</p>
+</li>
+<li>对每一个类重复2，要注意的是，划分完后面的类之后，要回去看一下前面的类是否需要进一步划分（因为可能之前结果在同一类，但在后面被分开了）</li>
+<li>每个等价类取一个状态作为代表，画新的DFA</li>
+</ol>
+<blockquote>
+<p>上一个例子中简化的结果如下图：</p>
+<p><img src="/images/comp/com-prin2.assets/image-20200308213842871.png" alt="image-20200308213842871" style="zoom: 60%;" /></p>
+</blockquote>
+<p>参考：<a href="https://blog.csdn.net/cuiods/article/details/52673154" target="_blank" rel="noopener">here</a></p>
+<p><br></p>
+<h2 id="Lex"><a href="#Lex" class="headerlink" title="Lex"></a>Lex</h2><p><strong>input</strong>: a text file containing regular expressions, together with the actions to be taken when each expression is matched</p>
+<p><strong>output</strong>: Contains C source code defining a procedure yylex that is\</p>
+<p> a table-driven implementation of a DFA corresponding to the regular expressions of the input file, and that   operates like a <strong>getToken</strong> procedure.</p>
+<h3 id="The-format-of-a-Lex-input-file"><a href="#The-format-of-a-Lex-input-file" class="headerlink" title="The format of a Lex input file"></a>The format of a Lex input file</h3><blockquote>
+<p>{definitions}     –&gt; 定义</p>
+<p>%%    –&gt; 分隔符</p>
+<p>{rules}     –&gt; 核心</p>
+<p>%%</p>
+<p>{auxiliary routines}    –&gt; action中用到的函数等</p>
+</blockquote>
+<h4 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h4><p>放在 %{…%} 的省略号部分中（遇到%不会处理，而是原封放入output）</p>
+<p>RE的命名在这里会被定义（因为RE不唯一，命名之后可以用于简化）</p>
+<h4 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h4><p>将RE和将要运行的代码相对应（一对一关系，RE - action）</p>
+<h4 id="Auxiliary-routines"><a href="#Auxiliary-routines" class="headerlink" title="Auxiliary routines"></a>Auxiliary routines</h4><p>函数定义</p>
+<p>“.”可以用作通配符，匹配除换行符外的所有符号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line">&#x2F;* a Lex program that changes all numbers from decimal to hexadecimal notation,</span><br><span class="line">	printing a summary statistic to stdeer</span><br><span class="line">*&#x2F;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int count &#x3D; 0;</span><br><span class="line">%&#125;</span><br><span class="line">digit [0-9]</span><br><span class="line">number &#123;digit&#125;+</span><br><span class="line">%%</span><br><span class="line">&#123; number &#125; &#123; int n &#x3D; atoi (yytext);</span><br><span class="line">	printf(“%x”, n);</span><br><span class="line">	if (n &gt; 9) count ++; &#125;</span><br><span class="line">%%</span><br><span class="line">main( )</span><br><span class="line">&#123; yylex ( );</span><br><span class="line">	fprintf(stdeer, “number of replacements &#x3D; %d”, count);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Notes/" rel="tag"># Notes</a>
+          
+            <a href="/tags/CP/" rel="tag"># CP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Compilation-Principle/2020-03-04/cp_intro/" rel="next" title="【Compilation Principle】 Introduction">
+                <i class="fa fa-chevron-left"></i> 【Compilation Principle】 Introduction
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar2.jpg"
+                alt="Irisssy" />
+            
+              <p class="site-author-name" itemprop="name">Irisssy</p>
+              <p class="site-description motion-element" itemprop="description">ZJUer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Iris-cyy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:irisssy_@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/irisssychen" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook-square"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/Iris_cyy" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scanning-Process"><span class="nav-number">1.</span> <span class="nav-text">Scanning Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式（Regular-Expression-RE）"><span class="nav-number">2.</span> <span class="nav-text">正则表达式（Regular Expression, RE）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些原则"><span class="nav-number">2.4.</span> <span class="nav-text">一些原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理歧义"><span class="nav-number">2.4.1.</span> <span class="nav-text">处理歧义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空白符"><span class="nav-number">2.4.2.</span> <span class="nav-text">空白符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lookahead"><span class="nav-number">2.4.3.</span> <span class="nav-text">Lookahead</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有限自动机（Finite-Automata-FA）"><span class="nav-number">3.</span> <span class="nav-text">有限自动机（Finite Automata, FA）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定型有限自动机（Deterministic-Finite-Automation-DFA）"><span class="nav-number">3.1.</span> <span class="nav-text">确定型有限自动机（Deterministic Finite Automation, DFA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非确定型有限自动机（Nondeterministic-Finite-Automaton-NFA）"><span class="nav-number">3.2.</span> <span class="nav-text">非确定型有限自动机（Nondeterministic Finite Automaton, NFA）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【IMPORTANT】从RE到DFA的转换"><span class="nav-number">4.</span> <span class="nav-text">【IMPORTANT】从RE到DFA的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RE-gt-NFA"><span class="nav-number">4.1.</span> <span class="nav-text">RE -&gt; NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Top-down"><span class="nav-number">4.1.1.</span> <span class="nav-text">Top-down</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Thompson’s-construction-Bottom-up"><span class="nav-number">4.1.2.</span> <span class="nav-text">Thompson’s construction (Bottom-up)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFA-gt-DFA"><span class="nav-number">4.2.</span> <span class="nav-text">NFA -&gt; DFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DFA的优化（最小化）"><span class="nav-number">4.3.</span> <span class="nav-text">DFA的优化（最小化）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lex"><span class="nav-number">5.</span> <span class="nav-text">Lex</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-format-of-a-Lex-input-file"><span class="nav-number">5.1.</span> <span class="nav-text">The format of a Lex input file</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definitions"><span class="nav-number">5.1.1.</span> <span class="nav-text">Definitions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rules"><span class="nav-number">5.1.2.</span> <span class="nav-text">Rules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Auxiliary-routines"><span class="nav-number">5.1.3.</span> <span class="nav-text">Auxiliary routines</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irisssy</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz", "V5WyXiF6o1Fz8ohjJ2dW4Ozd");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

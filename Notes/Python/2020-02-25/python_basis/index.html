@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://iris-cyy.github.io/images/python/python-basis.assets/image-20200225183717669.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/python/python-basis.assets/image-20200303103254420.png">
 <meta property="article:published_time" content="2020-02-25T10:09:53.000Z">
-<meta property="article:modified_time" content="2020-03-03T03:25:10.559Z">
+<meta property="article:modified_time" content="2020-03-10T04:53:58.521Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Python">
@@ -503,29 +503,6 @@
 <p>格式化输出的做法还挺复杂的，以后写码的时候再具体看吧 ：）</p>
 </blockquote>
 <p><br></p>
-<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p><code>sum()</code>可以给list求和</p>
-<p><code>%</code>模，可以用作浮点数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3.4</span>%<span class="number">2</span></span><br><span class="line"><span class="number">1.4</span></span><br><span class="line"><span class="comment"># 3.4 - 1 * 2 = 1.4</span></span><br><span class="line"><span class="comment"># 但可能会有不精确问题，例如3.2%2=1.2000000000000002</span></span><br></pre></td></tr></table></figure>
-<p><code>/</code>默认是浮点数除法，<code>//</code>默认是整数除法（向下取整，但如果有一个为float则是取整后的float）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">5</span>/<span class="number">3</span></span><br><span class="line"><span class="number">1.6666666666666667</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">4</span>/<span class="number">2</span></span><br><span class="line"><span class="number">2.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">5</span>//<span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">4</span>//<span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">32.2</span>//<span class="number">6</span></span><br><span class="line"><span class="number">5.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">-3</span>//<span class="number">2</span></span><br><span class="line"><span class="number">-2</span></span><br></pre></td></tr></table></figure>
-<p><code>math.sqrt()</code>或<code>**0.5</code>可以开根号（float类）</p>
-<p>乘方可以用<code>pow()</code>或者<code>**</code></p>
-<p><code>**</code> 运算顺序<u>从右往左</u>，<code>3**2**3</code>先算<code>2**3</code>再算<code>3**8</code></p>
-<p><code>round(x)</code>返回浮点数x的四舍五入的值，<code>round(x,n)</code> 返回浮点数x的四舍五入的小数点后的n位数值</p>
-<blockquote>
-<p>其实是四舍六入五成双。1~4舍去， 6~9进位，当5时，如果5后面还有数字则进位，如果5后面没有数字的情况下，5前面的数字偶数则进位，5前面的数字是奇数则舍去。</p>
-<p>n=0表示精确到个位，-1表示十位，负数以此类推</p>
-</blockquote>
-<p>$ln$：<code>math.log()</code></p>
-<p>$log_{10}​$：<code>math.log10()</code></p>
-<p>$log_2$：<code>math.log2()</code></p>
-<p>两个数字之间<code>and</code>，值为后面一个数字（除非有0）</p>
-<p><code>math</code>中的常用函数</p>
-<p><img src="/images/python/python-basis.assets/image-20200303103254420.png" width=500></p>
-<p>比大小可以连着来</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>&lt;<span class="number">3</span>&lt;<span class="number">5</span> <span class="comment"># 1&lt;3 and 3&lt;5</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>&lt;<span class="number">5</span>&gt;<span class="number">2</span> <span class="comment"># 1&lt;5 and 5&gt;2</span></span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<p>逻辑运算符，第一个条件符合就不用算第二个（第二个里面有error不会报）</p>
-<p><br></p>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>python没有char没有double，分别用str和float覆盖了</p>
 <p><code>type()</code>可以用来获得数据类型</p>
 <p>True是1，False是0（做算数的时候可以替换，但是<code>type(True)</code>是<code>&lt;class &#39;bool&#39;</code>）</p>
@@ -554,7 +531,7 @@
 <p>用<code>complex()</code>函数创建，<code>real</code>方法取实部，<code>imag</code>方法取虚部</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = complex(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">(<span class="number">1</span>+<span class="number">2j</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.real</span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.imag</span><br><span class="line"><span class="number">2.0</span></span><br></pre></td></tr></table></figure>
 <p>方法conjugate返回复数的共轭复数</p>
-<p>$abs(a+bj) = \sqrt{a^2+b^2}​$</p>
+<p>$abs(a+bj) = \sqrt{a^2+b^2}$</p>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>单引号和双引号没有区别</p>
 <p>当在双引号” “内部还需要使用引号时，可以使用单引号 ’ ’，当在单引号’ ’ 内部需要使用引号时，可以使用双引号” “</p>
 <p>用<code>s[i]</code>访问字符串s中的第i个字符，i=-1时访问最后一个字符</p>
@@ -571,7 +548,45 @@
 <p><code>s.lower()</code>改成小写，<code>s.upper()</code>改成大写</p>
 <p><code>s.replace(old, new)</code>：把字符串s中的所有子串old都替换成new</p>
 <p>比大小，从前往后按位比，’a’&lt;’b’，’A’&lt;’a’</p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[&lt;expression&gt; <span class="keyword">for</span> &lt;item&gt; <span class="keyword">in</span> &lt;iterable&gt;]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">2</span>*n <span class="keyword">for</span> n <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]]</span><br><span class="line">[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum([<span class="number">1</span>/i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">21</span>)]) <span class="comment">#求1+1/2+...+1/20</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum([ <span class="number">1</span>/i <span class="keyword">if</span> i%<span class="number">2</span>==<span class="number">1</span> <span class="keyword">else</span> <span class="number">-1</span>/i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>)]) <span class="comment">#求1-1/2+1/3-1/4+...前n项和</span></span><br><span class="line"></span><br><span class="line">[&lt;expression&gt; <span class="keyword">for</span> &lt;item&gt; <span class="keyword">in</span> &lt;iterable&gt; <span class="keyword">if</span> &lt;condition&gt;]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">2</span>*n <span class="keyword">for</span> n <span class="keyword">in</span> range(<span class="number">8</span>) <span class="keyword">if</span> n%<span class="number">2</span>==<span class="number">1</span>]</span><br><span class="line">[<span class="number">2</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">14</span>]</span><br></pre></td></tr></table></figure>
 <p><br></p>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>python中没有++，但是可以用+=</p>
+<p><code>sum()</code>可以给list求和</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(range(<span class="number">1</span>,<span class="number">11</span>))</span><br><span class="line"><span class="number">55</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p><code>%</code>模，可以用作浮点数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3.4</span>%<span class="number">2</span></span><br><span class="line"><span class="number">1.4</span></span><br><span class="line"><span class="comment"># 3.4 - 1 * 2 = 1.4</span></span><br><span class="line"><span class="comment"># 但可能会有不精确问题，例如3.2%2=1.2000000000000002</span></span><br></pre></td></tr></table></figure>
+<p><code>/</code>默认是浮点数除法，<code>//</code>默认是整数除法（向下取整，但如果有一个为float则是取整后的float）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">5</span>/<span class="number">3</span></span><br><span class="line"><span class="number">1.6666666666666667</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">4</span>/<span class="number">2</span></span><br><span class="line"><span class="number">2.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">5</span>//<span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">4</span>//<span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">32.2</span>//<span class="number">6</span></span><br><span class="line"><span class="number">5.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">-3</span>//<span class="number">2</span></span><br><span class="line"><span class="number">-2</span></span><br></pre></td></tr></table></figure>
+<p><code>math.sqrt()</code>或<code>**0.5</code>可以开根号（float类）</p>
+<p>乘方可以用<code>pow()</code>或者<code>**</code></p>
+<p><code>**</code> 运算顺序<u>从右往左</u>，<code>3**2**3</code>先算<code>2**3</code>再算<code>3**8</code></p>
+<p><code>round(x)</code>返回浮点数x的四舍五入的值，<code>round(x,n)</code> 返回浮点数x的四舍五入的小数点后的n位数值</p>
+<blockquote>
+<p>其实是四舍六入五成双。1~4舍去， 6~9进位，当5时，如果5后面还有数字则进位，如果5后面没有数字的情况下，5前面的数字偶数则进位，5前面的数字是奇数则舍去。</p>
+<p>n=0表示精确到个位，-1表示十位，负数以此类推</p>
+</blockquote>
+<p>$ln$：<code>math.log()</code></p>
+<p>$log_{10}$：<code>math.log10()</code></p>
+<p>$log_2$：<code>math.log2()</code></p>
+<p>两个数字之间<code>and</code>，值为后面一个数字（除非有0）</p>
+<p><code>math</code>中的常用函数</p>
+<p><img src="../../../../../../images/python/python-basis.assets/image-20200303103254420.png" width=500></p>
+<p>比大小可以连着来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>&lt;<span class="number">3</span>&lt;<span class="number">5</span> <span class="comment"># 1&lt;3 and 3&lt;5</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>&lt;<span class="number">5</span>&gt;<span class="number">2</span> <span class="comment"># 1&lt;5 and 5&gt;2</span></span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>逻辑运算符，第一个条件符合就不用算第二个（第二个里面有error不会报）</p>
+<p><br></p>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p>通常一行一条，如一行中有多条，则用分号（;）分开，如果语句太长要跨行，可以续行符（\）跨行表示一个语句</p>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><p>不需要事先声明变量名及其类型，直接赋值即可创建各种类型的对象变量</p>
+<p>在c中对变量的赋值，是直接把值给变量，而在python中，变量相当于一个标签，指向一个值。</p>
+<p>所以在python中可以进行同步赋值交换变量的值，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a,b = b,a <span class="comment"># 交换变量的值（把a的值给b，把b的值给a）</span></span><br></pre></td></tr></table></figure>
+<h4 id="单变量赋值"><a href="#单变量赋值" class="headerlink" title="单变量赋值"></a>单变量赋值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>k = x + y <span class="comment"># k = 3</span></span><br></pre></td></tr></table></figure>
+<h4 id="序列赋值"><a href="#序列赋值" class="headerlink" title="序列赋值"></a>序列赋值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x,y = <span class="number">4</span>,<span class="number">8</span> <span class="comment"># x = 4, y = 8</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,b = <span class="string">"34"</span> <span class="comment"># a = 3, b = 4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,b = <span class="string">"345"</span> <span class="comment"># error</span></span><br></pre></td></tr></table></figure>
+<h4 id="不等长序列赋值"><a href="#不等长序列赋值" class="headerlink" title="不等长序列赋值"></a>不等长序列赋值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>i, *j = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="comment"># i = 1, j = [2,3], i是int，j是list（注意j前面的*不能漏）</span></span><br></pre></td></tr></table></figure>
+<h4 id="复合赋值"><a href="#复合赋值" class="headerlink" title="复合赋值"></a>复合赋值</h4><p>*=， +=， -= …</p>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>if-else，注意冒号和缩进，语句块要对齐</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &lt;variable&gt; <span class="keyword">in</span> &lt;container&gt;</span><br><span class="line"><span class="keyword">for</span> &lt;variable&gt; <span class="keyword">in</span> &lt;list&gt;</span><br><span class="line"><span class="keyword">for</span> &lt;variable&gt; <span class="keyword">in</span> range(&lt;value&gt;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">range(start, stop, step)</span><br><span class="line"><span class="comment"># 左闭右开，start默认为0，step默认为1，可以为负</span></span><br><span class="line"><span class="comment"># 如果省略了start，必须也省略step</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -700,7 +715,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -711,7 +726,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -722,7 +737,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -790,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.1.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#id函数"><span class="nav-number">1.2.</span> <span class="nav-text">id函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出"><span class="nav-number">2.</span> <span class="nav-text">输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">2.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">2.2.</span> <span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式化输出"><span class="nav-number">2.2.1.</span> <span class="nav-text">格式化输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">%</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#format-函数"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">format()函数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算"><span class="nav-number">3.</span> <span class="nav-text">运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些内置的类型转换函数"><span class="nav-number">4.1.</span> <span class="nav-text">一些内置的类型转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数-int"><span class="nav-number">4.2.</span> <span class="nav-text">整数 int</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数-float"><span class="nav-number">4.3.</span> <span class="nav-text">浮点数 float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复数"><span class="nav-number">4.4.</span> <span class="nav-text">复数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">4.5.</span> <span class="nav-text">字符串</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.1.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#id函数"><span class="nav-number">1.2.</span> <span class="nav-text">id函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出"><span class="nav-number">2.</span> <span class="nav-text">输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">2.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">2.2.</span> <span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式化输出"><span class="nav-number">2.2.1.</span> <span class="nav-text">格式化输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">%</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#format-函数"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">format()函数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">3.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些内置的类型转换函数"><span class="nav-number">3.1.</span> <span class="nav-text">一些内置的类型转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数-int"><span class="nav-number">3.2.</span> <span class="nav-text">整数 int</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数-float"><span class="nav-number">3.3.</span> <span class="nav-text">浮点数 float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复数"><span class="nav-number">3.4.</span> <span class="nav-text">复数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">3.5.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">3.6.</span> <span class="nav-text">列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算"><span class="nav-number">4.</span> <span class="nav-text">运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">5.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值"><span class="nav-number">5.1.</span> <span class="nav-text">赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单变量赋值"><span class="nav-number">5.1.1.</span> <span class="nav-text">单变量赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序列赋值"><span class="nav-number">5.1.2.</span> <span class="nav-text">序列赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不等长序列赋值"><span class="nav-number">5.1.3.</span> <span class="nav-text">不等长序列赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复合赋值"><span class="nav-number">5.1.4.</span> <span class="nav-text">复合赋值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">5.2.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环"><span class="nav-number">5.3.</span> <span class="nav-text">循环</span></a></li></ol></li></ol></div>
             
 
           </div>
