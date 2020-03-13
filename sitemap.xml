@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-10/cp_parsing/</loc>
+    
+    <lastmod>2020-03-13T06:49:30.656Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_scanning/</loc>
     
     <lastmod>2020-03-10T05:15:46.897Z</lastmod>

@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Notes,CP," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="花落知多少" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="语法分析树的结构取决于语言的结构，且是一种动态的数据结构（可以增、删、改） Context-Free Grammar (CFG)$RE ⊆ CFG$ 产生式左边（LHS，left-hand sides）只有一个符号，且是非终结符 定义A Context-Free Grammar is a 4-tuple $(V,Σ,S,→)$, where  $V$ is a finite set of nont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Compilation Principle】Context-Free Grammars and Parsing">
+<meta property="og:url" content="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-10/cp_parsing/index.html">
+<meta property="og:site_name" content="花落知多少">
+<meta property="og:description" content="语法分析树的结构取决于语言的结构，且是一种动态的数据结构（可以增、删、改） Context-Free Grammar (CFG)$RE ⊆ CFG$ 产生式左边（LHS，left-hand sides）只有一个符号，且是非终结符 定义A Context-Free Grammar is a 4-tuple $(V,Σ,S,→)$, where  $V$ is a finite set of nont">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313125644213.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313130211688.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313135958685.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313132604830.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313132630115.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313134540122.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313135853556.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313135907660.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313140454490.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313140810313.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313142632731.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313142721793.png">
+<meta property="article:published_time" content="2020-03-10T06:35:55.000Z">
+<meta property="article:modified_time" content="2020-03-13T06:49:30.656Z">
+<meta property="article:author" content="Irisssy">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="CP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313125644213.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'AWI44TKCWF',
+      apiKey: '47152bafbd084f0e2f14756524feff94',
+      indexName: 'blogIndex_NAME',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-10/cp_parsing/"/>
+
+
+
+
+
+  <title>【Compilation Principle】Context-Free Grammars and Parsing | 花落知多少</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98ba9ea0a4c9adce8b273e137e8bcf3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">花落知多少</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Nice to meet you :)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-10/cp_parsing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irisssy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花落知多少">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Compilation Principle】Context-Free Grammars and Parsing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T14:35:55+08:00">
+                2020-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/Compilation-Principle/" itemprop="url" rel="index">
+                    <span itemprop="name">Compilation Principle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/Compilation-Principle/2020-03-10/cp_parsing/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/Compilation-Principle/2020-03-10/cp_parsing/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Notes/Compilation-Principle/2020-03-10/cp_parsing/" class="leancloud_visitors" data-flag-title="【Compilation Principle】Context-Free Grammars and Parsing">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>语法分析树的结构取决于语言的结构，且是一种动态的数据结构（可以增、删、改）</p>
+<h2 id="Context-Free-Grammar-CFG"><a href="#Context-Free-Grammar-CFG" class="headerlink" title="Context-Free Grammar (CFG)"></a>Context-Free Grammar (CFG)</h2><p>$RE ⊆ CFG$</p>
+<p>产生式左边（LHS，left-hand sides）只有一个符号，且是非终结符</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>A Context-Free Grammar is a 4-tuple $(V,Σ,S,→)$, where</p>
+<ul>
+<li>$V$ is a finite set of nonterminal symbols</li>
+<li>$Σ$ is a finite set of terminal symbols</li>
+<li>$S ∈ V $ is a distinguished nonterminal, the start symbol</li>
+<li>$→ ⊆  V × (V ∪ Σ)^<em>  Σ)^</em>$ is a finite relation, the productions</li>
+</ul>
+<p>更加正式的定义：</p>
+<p>$G = (T,N,P,S)$</p>
+<ul>
+<li>$T$: Terminals</li>
+<li>$N$: Nonterminals (disjoint from T)</li>
+<li>$P$: Productions (Grammar rules), $A \rightarrow a,\;A \in N, \; a \in (T \cup N)^*$</li>
+<li>$S$: Start symbol ($S \in N$)</li>
+<li>sentencial from: a string in  $(T \cup N)^*$</li>
+<li>sentence: $T^*$，只能由终结符组成</li>
+<li>$T \cup N$ 表示文法的所有符号</li>
+<li>$\alpha \Rightarrow^* \beta$ 表示$\alpha$可以通过 $n \; (n\geq 0)$ 步变换为$\beta$</li>
+<li>derivation: $S \Rightarrow^<em> w \; (w \in T^</em>)$</li>
+<li>$L(G)$: 由文法生成的语言，$L(G) = {w \in T^<em>\;|\;there \; exists \; a derivation\; S \Rightarrow^</em> w \; of \; G}$</li>
+<li>rightmost derivation: $S \Rightarrow_{rm}^<em> w $, $a A \gamma \Rightarrow a \beta \gamma, \, a \in T^</em>$</li>
+<li>leftmost derivation: $S \Rightarrow_{lm}^<em> w $, $a A \gamma \Rightarrow a \beta \gamma, \, \gamma \in T^</em>$</li>
+</ul>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>$G$：grammar，文法</p>
+<p>$s$：sentence，由终结符组成的串</p>
+<p>$L(G)$：文法产生的语言（sentence的集合）</p>
+<p>BNF范式</p>
+<p>通常用大写字母表示非终结符，用小写表示终结符</p>
+<h4 id="递归（recursion）"><a href="#递归（recursion）" class="headerlink" title="递归（recursion）"></a>递归（recursion）</h4><ul>
+<li>左递归：LHS的非终结符出现在RHS的第一个字符$A \rightarrow A \, \alpha \, | \, \beta$ 等价于 $(\beta\alpha^*)$</li>
+<li>右递归：LHS的非终结符出现在RHS的最后一个字符$A \rightarrow \alpha \, A \, | \, \beta$  等价于 $(\alpha^*\beta)$</li>
+</ul>
+<p>$\alpha$、$\beta$是任意的串（终结符或非终结符都可），其中$\beta$不以$A$为开头/结尾</p>
+<p>两者在很多情况下不等价</p>
+<h4 id="epsilon-产生式（-epsilon-production-）"><a href="#epsilon-产生式（-epsilon-production-）" class="headerlink" title="$\epsilon$ 产生式（$\epsilon-production$）"></a>$\epsilon$ 产生式（$\epsilon-production$）</h4><p>$empty \, \rightarrow \, \epsilon$</p>
+<p>用于产生空串，如果语言中要有空串，必须要有$\epsilon$ 产生式</p>
+<p>如$a^*$相当于$A \rightarrow A \, \alpha \, | \, \epsilon \; or \; A \rightarrow \alpha \, A \, | \, \epsilon$</p>
+<p>$\epsilon$ 作用：让文法更简洁，效率更高</p>
+<p>eg.  $A \rightarrow (A) \, A \,| \, \epsilon$，生成能够匹配的括号</p>
+<p>正规表达式没有记忆功能，上下文无关语法可以</p>
+<h2 id="Parse-Trees-and-Abstract-Syntax-Trees"><a href="#Parse-Trees-and-Abstract-Syntax-Trees" class="headerlink" title="Parse Trees and  Abstract Syntax Trees"></a>Parse Trees and  Abstract Syntax Trees</h2><h3 id="Parse-Trees"><a href="#Parse-Trees" class="headerlink" title="Parse Trees"></a>Parse Trees</h3><p>用树的形态来表示推导，推导和树是多对一的关系</p>
+<p>非叶节点表示非终结符，叶节点表示终结符</p>
+<p>在树中不体现推导过程，只显示推导结果</p>
+<p>最左推导（leftmost derivation）：每次展开最左边的非终结符，对应parse tree的前序遍历</p>
+<p>最右推导（rightmost derivation）：每次展开最右边的非终结符，对应parse tree的后序遍历</p>
+<p>每一棵树都只有唯一的最左推导和最右推导</p>
+<p>eg.</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313125644213.png" alt="image-20200313125644213" style="zoom:77%;" /></p>
+<p>要注意的是在文法分析中关注的是类型而不是语义（因此parse tree的叶节点推出的是number而不是具体的3or4），词义在语义分析中进行处理</p>
+<h3 id="Abstract-Syntax-Trees"><a href="#Abstract-Syntax-Trees" class="headerlink" title="Abstract Syntax Trees"></a>Abstract Syntax Trees</h3><p>parse tree 的压缩版（更简洁）</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313130211688.png" alt="image-20200313130211688" style="zoom:67%;" /></p>
+<p>（+其实代表相加的结果）</p>
+<blockquote>
+<p>eg.  </p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313135958685.png" alt="image-20200313135958685" style="zoom:60%;" /></p>
+<p>parse tree:</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313132604830.png" alt="image-20200313132604830" style="zoom:60%;" /></p>
+<p>syntax tree:</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313132630115.png" alt="image-20200313132630115" style="zoom:60%;" /></p>
+</blockquote>
+<p>孩子个数可能不定，可以用leftmost-child right sibling来表达</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313134540122.png" alt="image-20200313134540122" style="zoom:67%;" /></p>
+<p><br></p>
+<h2 id="歧义（ambiguity）"><a href="#歧义（ambiguity）" class="headerlink" title="歧义（ambiguity）"></a>歧义（ambiguity）</h2><p>一个可以构建两个不同结构的parse tree的语法具有歧义（可能会因为没有区分优先级和结合律造成）</p>
+<p>符号离树根越远优先级越高</p>
+<p>解决方法：</p>
+<ol>
+<li><p>定义一个消除歧义的规则，例如指明哪一种tree是对的</p>
+<p>优点：不需要改变原来的语法</p>
+<p>缺点：文法结构并非只由语法来规定（grammar+rule）</p>
+</li>
+<li><p>改造文法，使得没有语法错误</p>
+<p>缺点：改造文法可能会降低可读性（有时候为了简洁性，可能还是会选择保留原来有歧义的形态）</p>
+</li>
+</ol>
+<blockquote>
+<p>eg1.</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313135853556.png" alt="image-20200313135853556" style="zoom:60%;" /></p>
+<p>会有歧义，因为没有规定*和+-的优先级，如34-3*42</p>
+<p>改成规定*优先级更高之后可以消除歧义（但parse tree会变得更加复杂）：</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313135907660.png" alt="image-20200313135907660" style="zoom:60%;" /></p>
+</blockquote>
+<h3 id="Dangling-else-problem"><a href="#Dangling-else-problem" class="headerlink" title="Dangling else problem"></a>Dangling else problem</h3><p>if语句的else匹配可能会带来歧义</p>
+<p>C中引入了{}来消除歧义，在Ada中引入end if</p>
+<p>在文法中，可以用类似以下的方法：</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313140454490.png" alt="image-20200313140454490" style="zoom:67%;" /></p>
+<p>Ada的文法（用BNF表示）</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313140810313.png" alt="image-20200313140810313" style="zoom:60%;" /></p>
+<h3 id="Inessential-ambiguity"><a href="#Inessential-ambiguity" class="headerlink" title="Inessential ambiguity"></a>Inessential ambiguity</h3><p>有一些歧义无关紧要，具体得看语义</p>
+<p><br></p>
+<h2 id="EBNF（Extended-BNF）"><a href="#EBNF（Extended-BNF）" class="headerlink" title="EBNF（Extended BNF）"></a>EBNF（Extended BNF）</h2><p>在BNF基础上增加重复（{…}）和选择（[]，一次或零次）</p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313142632731.png" alt="image-20200313142632731" style="zoom:60%;" /></p>
+<p><img src="/images/comp/com-prin3.assets/image-20200313142721793.png" alt="image-20200313142721793" style="zoom:60%;" /></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Notes/" rel="tag"># Notes</a>
+          
+            <a href="/tags/CP/" rel="tag"># CP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Compilation-Principle/2020-03-04/cp_scanning/" rel="next" title="【Compilation Principle】Scanning (Lexical Analysis)">
+                <i class="fa fa-chevron-left"></i> 【Compilation Principle】Scanning (Lexical Analysis)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar2.jpg"
+                alt="Irisssy" />
+            
+              <p class="site-author-name" itemprop="name">Irisssy</p>
+              <p class="site-description motion-element" itemprop="description">ZJUer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Iris-cyy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:irisssy_@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/irisssychen" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook-square"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/Iris_cyy" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-Free-Grammar-CFG"><span class="nav-number">1.</span> <span class="nav-text">Context-Free Grammar (CFG)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推导"><span class="nav-number">1.2.</span> <span class="nav-text">推导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归（recursion）"><span class="nav-number">1.2.1.</span> <span class="nav-text">递归（recursion）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#epsilon-产生式（-epsilon-production-）"><span class="nav-number">1.2.2.</span> <span class="nav-text">$\epsilon$ 产生式（$\epsilon-production$）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parse-Trees-and-Abstract-Syntax-Trees"><span class="nav-number">2.</span> <span class="nav-text">Parse Trees and  Abstract Syntax Trees</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parse-Trees"><span class="nav-number">2.1.</span> <span class="nav-text">Parse Trees</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract-Syntax-Trees"><span class="nav-number">2.2.</span> <span class="nav-text">Abstract Syntax Trees</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#歧义（ambiguity）"><span class="nav-number">3.</span> <span class="nav-text">歧义（ambiguity）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dangling-else-problem"><span class="nav-number">3.1.</span> <span class="nav-text">Dangling else problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inessential-ambiguity"><span class="nav-number">3.2.</span> <span class="nav-text">Inessential ambiguity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EBNF（Extended-BNF）"><span class="nav-number">4.</span> <span class="nav-text">EBNF（Extended BNF）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irisssy</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz", "V5WyXiF6o1Fz8ohjJ2dW4Ozd");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
