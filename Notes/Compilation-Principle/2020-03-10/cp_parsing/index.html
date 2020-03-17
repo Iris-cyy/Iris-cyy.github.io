@@ -95,6 +95,7 @@
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313132604830.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313132630115.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313134540122.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313173754736.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313135853556.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313135907660.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313140454490.png">
@@ -102,7 +103,7 @@
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313142632731.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin3.assets/image-20200313142721793.png">
 <meta property="article:published_time" content="2020-03-10T06:35:55.000Z">
-<meta property="article:modified_time" content="2020-03-13T06:49:30.656Z">
+<meta property="article:modified_time" content="2020-03-13T10:22:08.280Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="CP">
@@ -457,7 +458,7 @@
 <li>$V$ is a finite set of nonterminal symbols</li>
 <li>$Σ$ is a finite set of terminal symbols</li>
 <li>$S ∈ V $ is a distinguished nonterminal, the start symbol</li>
-<li>$→ ⊆  V × (V ∪ Σ)^<em>  Σ)^</em>$ is a finite relation, the productions</li>
+<li>$→ ⊆  V × (V ∪ Σ)^*  Σ)^*​$ is a finite relation, the productions</li>
 </ul>
 <p>更加正式的定义：</p>
 <p>$G = (T,N,P,S)$</p>
@@ -467,18 +468,15 @@
 <li>$P$: Productions (Grammar rules), $A \rightarrow a,\;A \in N, \; a \in (T \cup N)^*$</li>
 <li>$S$: Start symbol ($S \in N$)</li>
 <li>sentencial from: a string in  $(T \cup N)^*$</li>
-<li>sentence: $T^*$，只能由终结符组成</li>
+<li>sentence: $T^*​$，只能由终结符组成</li>
 <li>$T \cup N$ 表示文法的所有符号</li>
-<li>$\alpha \Rightarrow^* \beta$ 表示$\alpha$可以通过 $n \; (n\geq 0)$ 步变换为$\beta$</li>
-<li>derivation: $S \Rightarrow^<em> w \; (w \in T^</em>)$</li>
-<li>$L(G)$: 由文法生成的语言，$L(G) = {w \in T^<em>\;|\;there \; exists \; a derivation\; S \Rightarrow^</em> w \; of \; G}$</li>
-<li>rightmost derivation: $S \Rightarrow_{rm}^<em> w $, $a A \gamma \Rightarrow a \beta \gamma, \, a \in T^</em>$</li>
-<li>leftmost derivation: $S \Rightarrow_{lm}^<em> w $, $a A \gamma \Rightarrow a \beta \gamma, \, \gamma \in T^</em>$</li>
+<li>$\alpha \Rightarrow^* \beta$ 表示​$\alpha$可以通过 ​$n \; (n\geq 0)$ 步变换为​$\beta$</li>
+<li>derivation: ${S \Rightarrow^* w} {\; (w \in T^*)}$</li>
+<li>$L(G)​$: 由文法生成的语言，$L(G) = {w \in T^*\;|\;there \; exists \; a derivation\; S \Rightarrow^* w \; of \; G}​$</li>
+<li>rightmost derivation: $S \Rightarrow_{rm}^* w ​$, $a A \gamma \Rightarrow a \beta \gamma, \, a \in T^*​$</li>
+<li>leftmost derivation: $S \Rightarrow_{lm}^* w ​$, $a A \gamma \Rightarrow a \beta \gamma, \, \gamma \in T^*​$</li>
 </ul>
-<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>$G$：grammar，文法</p>
-<p>$s$：sentence，由终结符组成的串</p>
-<p>$L(G)$：文法产生的语言（sentence的集合）</p>
-<p>BNF范式</p>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>BNF范式</p>
 <p>通常用大写字母表示非终结符，用小写表示终结符</p>
 <h4 id="递归（recursion）"><a href="#递归（recursion）" class="headerlink" title="递归（recursion）"></a>递归（recursion）</h4><ul>
 <li>左递归：LHS的非终结符出现在RHS的第一个字符$A \rightarrow A \, \alpha \, | \, \beta$ 等价于 $(\beta\alpha^*)$</li>
@@ -494,7 +492,6 @@
 <p>正规表达式没有记忆功能，上下文无关语法可以</p>
 <h2 id="Parse-Trees-and-Abstract-Syntax-Trees"><a href="#Parse-Trees-and-Abstract-Syntax-Trees" class="headerlink" title="Parse Trees and  Abstract Syntax Trees"></a>Parse Trees and  Abstract Syntax Trees</h2><h3 id="Parse-Trees"><a href="#Parse-Trees" class="headerlink" title="Parse Trees"></a>Parse Trees</h3><p>用树的形态来表示推导，推导和树是多对一的关系</p>
 <p>非叶节点表示非终结符，叶节点表示终结符</p>
-<p>在树中不体现推导过程，只显示推导结果</p>
 <p>最左推导（leftmost derivation）：每次展开最左边的非终结符，对应parse tree的前序遍历</p>
 <p>最右推导（rightmost derivation）：每次展开最右边的非终结符，对应parse tree的后序遍历</p>
 <p>每一棵树都只有唯一的最左推导和最右推导</p>
@@ -502,6 +499,8 @@
 <p><img src="/images/comp/com-prin3.assets/image-20200313125644213.png" alt="image-20200313125644213" style="zoom:77%;" /></p>
 <p>要注意的是在文法分析中关注的是类型而不是语义（因此parse tree的叶节点推出的是number而不是具体的3or4），词义在语义分析中进行处理</p>
 <h3 id="Abstract-Syntax-Trees"><a href="#Abstract-Syntax-Trees" class="headerlink" title="Abstract Syntax Trees"></a>Abstract Syntax Trees</h3><p>parse tree 的压缩版（更简洁）</p>
+<p>用运算符/操作作为根节点和内部节点，操作数作为子节点</p>
+<p>在树中不体现推导过程，只显示推导结果</p>
 <p><img src="/images/comp/com-prin3.assets/image-20200313130211688.png" alt="image-20200313130211688" style="zoom:67%;" /></p>
 <p>（+其实代表相加的结果）</p>
 <blockquote>
@@ -527,6 +526,12 @@
 <p>缺点：改造文法可能会降低可读性（有时候为了简洁性，可能还是会选择保留原来有歧义的形态）</p>
 </li>
 </ol>
+<p>结合律：</p>
+<ul>
+<li>A left recursive rule makes its operators associate on the left.</li>
+<li>A right recursive rule makes them associate on the right.</li>
+</ul>
+<p><img src="/images/comp/com-prin3.assets/image-20200313173754736.png" alt="image-20200313173754736" style="zoom: 65%;" /></p>
 <blockquote>
 <p>eg1.</p>
 <p><img src="/images/comp/com-prin3.assets/image-20200313135853556.png" alt="image-20200313135853556" style="zoom:60%;" /></p>
@@ -586,6 +591,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Python/2020-03-17/python_sequence/" rel="prev" title="【python】Sequence">
+                【python】Sequence <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -669,7 +678,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

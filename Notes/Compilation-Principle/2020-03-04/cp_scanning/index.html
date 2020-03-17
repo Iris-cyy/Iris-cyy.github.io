@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308213027672.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin2.assets/image-20200308213842871.png">
 <meta property="article:published_time" content="2020-03-04T09:21:17.000Z">
-<meta property="article:modified_time" content="2020-03-10T05:15:46.897Z">
+<meta property="article:modified_time" content="2020-03-16T07:32:13.188Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="CP">
@@ -554,12 +554,13 @@
 </ol>
 <blockquote>
 <p> 举个栗子便于理解：</p>
-<p>得到NFA如下图：</p>
-<p><img src="/images/comp/com-prin2.assets/image-20200308212454788.png" alt="image-20200308212454788" style="zoom:80%;" /></p>
-<p>对各状态求ε闭包：</p>
-<p>$\overline 1 = {1,2,3,5,8}$<br>$\overline 2 = {2,3,5}$<br>$\overline 3 = {3}$<br>$\overline 4 = {2,3,4,5,7,8}$<br>$\overline 5 = {5}$<br>$\overline 6 = {2,3,5,6,7,8}$<br>$\overline 7 = {2,3,5,7,8}$<br>$\overline 8 = {8}$<br>$\overline 9 = {9,10,12,14,15,16}$<br>$\overline{10} = {10}$<br>$\overline{11} = {11,16}$<br>$\overline{12} = {12}$<br>$\overline{13} = {13,16}$<br>$\overline{14} = {14,15,16}$<br>$\overline{15} = {15,16}$<br>$\overline{16} = {16}$</p>
-<p>得到新的状态转换表：</p>
-<p>（例如，从S0中各状态通过a：3-&gt;4, 8-&gt;9，所以S0通过a转移到 {$\overline 4, \overline 9$}，展开如表中所示，其他同理）</p>
+<p> $(a|b)^*a(a|b|ε)$</p>
+<p> 得到NFA如下图：</p>
+<p> <img src="/images/comp/com-prin2.assets/image-20200308212454788.png" alt="image-20200308212454788" style="zoom:80%;" /></p>
+<p> 对各状态求ε闭包：</p>
+<p> $\overline 1 = {1,2,3,5,8}$<br> $\overline 2 = {2,3,5}$<br> $\overline 3 = {3}$<br> $\overline 4 = {2,3,4,5,7,8}$<br> $\overline 5 = {5}$<br> $\overline 6 = {2,3,5,6,7,8}$<br> $\overline 7 = {2,3,5,7,8}$<br> $\overline 8 = {8}$<br> $\overline 9 = {9,10,12,14,15,16}$<br> $\overline{10} = {10}$<br> $\overline{11} = {11,16}$<br> $\overline{12} = {12}$<br> $\overline{13} = {13,16}$<br> $\overline{14} = {14,15,16}$<br> $\overline{15} = {15,16}$<br> $\overline{16} = {16}​$</p>
+<p> 得到新的状态转换表：</p>
+<p> （例如，从S0中各状态通过a：3-&gt;4, 8-&gt;9，所以S0通过a转移到 {$\overline 4, \overline 9$}，展开如表中所示，其他同理）</p>
 <table>
 <thead>
 <tr>
@@ -596,8 +597,8 @@
 </tr>
 </tbody>
 </table>
-<p>画出DFA：</p>
-<p><img src="/images/comp/com-prin2.assets/image-20200308213027672.png" alt="image-20200308213027672" style="zoom: 60%;" /></p>
+<p> 画出DFA：</p>
+<p> <img src="/images/comp/com-prin2.assets/image-20200308213027672.png" alt="image-20200308213027672" style="zoom: 60%;" /></p>
 </blockquote>
 <h3 id="DFA的优化（最小化）"><a href="#DFA的优化（最小化）" class="headerlink" title="DFA的优化（最小化）"></a>DFA的优化（最小化）</h3><p>最小化的需求是，每个等价类只能由一个状态来表示，因此这一步要做的就是划分等价类</p>
 <ol>
@@ -758,7 +759,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
