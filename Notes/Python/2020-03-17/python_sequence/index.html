@@ -83,15 +83,15 @@
 
 
 
-<meta name="description" content="容器有序容器（不可变）：字符串(string)、元组(tuple)、列表(list) 无序容器（可变）：集合、字典 序列（Sequence）不是数据结构，是容器的一种 下标从0开始 字符串：’hello’ 列表：[‘h’, ‘e’, ‘l’, ‘l’, ‘o’] 元组：(‘h’, ‘e’, ‘l’, ‘l’, ‘o’) 所有序列类型都可以进行如下操作：  切片如果切片中使用负值访问，表示倒数第几个">
+<meta name="description" content="容器有序容器（不可变）：字符串(string)、元组(tuple)、列表(list) 无序容器（可变）：集合、字典 序列（Sequence）不是数据结构，是容器的一种 下标从0开始 字符串：’hello’ 列表：[‘h’, ‘e’, ‘l’, ‘l’, ‘o’] 元组：(‘h’, ‘e’, ‘l’, ‘l’, ‘o’) 所有序列类型都可以进行如下操作：  切片&lt;list&gt; [&lt;b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【python】Sequence">
+<meta property="og:title" content="【Python】Sequence">
 <meta property="og:url" content="https://iris-cyy.github.io/Notes/Python/2020-03-17/python_sequence/index.html">
 <meta property="og:site_name" content="花落知多少">
-<meta property="og:description" content="容器有序容器（不可变）：字符串(string)、元组(tuple)、列表(list) 无序容器（可变）：集合、字典 序列（Sequence）不是数据结构，是容器的一种 下标从0开始 字符串：’hello’ 列表：[‘h’, ‘e’, ‘l’, ‘l’, ‘o’] 元组：(‘h’, ‘e’, ‘l’, ‘l’, ‘o’) 所有序列类型都可以进行如下操作：  切片如果切片中使用负值访问，表示倒数第几个">
+<meta property="og:description" content="容器有序容器（不可变）：字符串(string)、元组(tuple)、列表(list) 无序容器（可变）：集合、字典 序列（Sequence）不是数据结构，是容器的一种 下标从0开始 字符串：’hello’ 列表：[‘h’, ‘e’, ‘l’, ‘l’, ‘o’] 元组：(‘h’, ‘e’, ‘l’, ‘l’, ‘o’) 所有序列类型都可以进行如下操作：  切片&lt;list&gt; [&lt;b">
 <meta property="og:image" content="https://iris-cyy.github.io/images/python/python-sequence.assets/image-20200317104445597.png">
 <meta property="article:published_time" content="2020-03-17T02:37:11.000Z">
-<meta property="article:modified_time" content="2020-03-17T03:07:16.822Z">
+<meta property="article:modified_time" content="2020-03-20T05:52:43.630Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Python">
@@ -132,7 +132,7 @@
 
 
 
-  <title>【python】Sequence | 花落知多少</title>
+  <title>【Python】Sequence | 花落知多少</title>
   
 
 
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【python】Sequence</h1>
+          <h1 class="post-title" itemprop="name headline">【Python】Sequence</h1>
         
 
         <div class="post-meta">
@@ -407,7 +407,7 @@
 
           
           
-             <span id="/Notes/Python/2020-03-17/python_sequence/" class="leancloud_visitors" data-flag-title="【python】Sequence">
+             <span id="/Notes/Python/2020-03-17/python_sequence/" class="leancloud_visitors" data-flag-title="【Python】Sequence">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -447,8 +447,14 @@
 <p>元组：(‘h’, ‘e’, ‘l’, ‘l’, ‘o’)</p>
 <p>所有序列类型都可以进行如下操作：</p>
 <p><img src="/images/python/python-sequence.assets/image-20200317104445597.png" alt="image-20200317104445597"></p>
-<h4 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h4><p>如果切片中使用负值访问，表示倒数第几个（如a[1:-3]，表示第1到倒数3（不含）—&gt; 最后一个元素是-1）</p>
+<h4 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h4><p><code>&lt;list&gt; [&lt;begin&gt; : &lt;end&gt; : &lt;step&gt;]</code></p>
+<p>如果切片中使用负值访问，表示倒数第几个（如a[1:-3]，表示第1到倒数3（不含）—&gt; 最后一个元素是-1）</p>
 <p>值为0可以省略（如a[:4]）</p>
+<p>end可以大于序列长度（就只切长度内的部分）</p>
+<p>a[::-1] 可用来倒序（或者可以用a.reverse()）</p>
+<p>a[::2] 间隔为2的切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">12</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[::<span class="number">2</span>]</span><br><span class="line">[<span class="number">12</span>, <span class="number">3</span>, <span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">1</span>::<span class="number">2</span>]</span><br><span class="line">[<span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">100</span>:]</span><br><span class="line">[]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">100</span>] <span class="comment">#error</span></span><br></pre></td></tr></table></figure>
+<p>a[:] 从头到尾切</p>
 <h4 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h4><p>如果将一个序列变量赋值给另外一个变量，则这2个变量表达了同一个序列。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(a)</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>]</span><br></pre></td></tr></table></figure>
 <p>如果希望2个变量各自拥有独立的序列，可使用切片</p>
@@ -461,6 +467,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span> <span class="keyword">in</span> a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">2</span>,<span class="number">3</span>] <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>]</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">2</span>,<span class="number">3</span>] <span class="keyword">in</span> [[<span class="number">2</span>,<span class="number">3</span>],<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>]</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>‘e’ <span class="keyword">in</span> ‘hello’</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>‘he’ <span class="keyword">in</span> ‘hello’</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
 <p>len()函数返回序列内部元素的个数</p>
 <p>min()和max()函数计算序列中的最小值和最大值（字符串的大小是按照其Unicode 编码来比较）</p>
+<h4 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.index(x, begin, end) <span class="comment">#返回x在list中的下标</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = set(input()) <span class="comment">#去重（放进集合）</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.sort() <span class="comment">#排序，有key(排序依据), reverse(True表示降序，默认升序)等参数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">''</span>.join(s)) <span class="comment">#s如果是['1','2','3','a']这样，将会去掉''并合并，输出123a</span></span><br></pre></td></tr></table></figure>
+<p>注意，find只能用于str，不能用于list</p>
+<p>Random.shuffle() 打乱原列表中元素的顺序</p>
+<p>sort() 用来直接排序，不返回（a.sort()即可）</p>
+<p>replace 返回替代完后的值，不改变原列表（s = s.replace(‘a’, ‘b’)）</p>
+<p>remove 删除第一个值是这样的元素（在原列表中改）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'1'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.remove(<span class="string">'1'</span>)	</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a </span><br><span class="line">[<span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'1'</span>]</span><br></pre></td></tr></table></figure>
+<p>pop() 返回list的最后一个元素，并将其在list里面去掉</p>
+<p>random.randint(x, y) 生成x,y区间内的随机数（包含x和y）</p>
 
       
     </div>
@@ -502,6 +517,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Algorithm/2020-03-18/quickpow/" rel="prev" title="【Algorithm】矩阵快速幂">
+                【Algorithm】矩阵快速幂 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -585,7 +604,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -596,7 +615,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -607,7 +626,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -675,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#容器"><span class="nav-number">1.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列（Sequence）"><span class="nav-number">1.1.</span> <span class="nav-text">序列（Sequence）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#切片"><span class="nav-number">1.1.1.</span> <span class="nav-text">切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制"><span class="nav-number">1.1.2.</span> <span class="nav-text">复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算"><span class="nav-number">1.1.3.</span> <span class="nav-text">运算</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#容器"><span class="nav-number">1.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列（Sequence）"><span class="nav-number">1.1.</span> <span class="nav-text">序列（Sequence）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#切片"><span class="nav-number">1.1.1.</span> <span class="nav-text">切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制"><span class="nav-number">1.1.2.</span> <span class="nav-text">复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算"><span class="nav-number">1.1.3.</span> <span class="nav-text">运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他操作"><span class="nav-number">1.1.4.</span> <span class="nav-text">其他操作</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
