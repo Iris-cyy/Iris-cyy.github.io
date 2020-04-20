@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-30/cp_topdown/</loc>
+    
+    <lastmod>2020-04-20T01:55:51.756Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iris-cyy.github.io/Notes/Python/2020-04-14/py_except/</loc>
     
     <lastmod>2020-04-14T13:58:15.629Z</lastmod>
@@ -9,23 +16,9 @@
   </url>
   
   <url>
-    <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-30/cp_topdown/</loc>
-    
-    <lastmod>2020-04-14T13:45:56.867Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://iris-cyy.github.io/uncategorized/2020-04-14/null/</loc>
     
     <lastmod>2020-04-14T07:23:20.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/uncategorized/2020-04-14/null/</loc>
-    
-    <lastmod>2020-04-14T07:23:13.000Z</lastmod>
     
   </url>
   
