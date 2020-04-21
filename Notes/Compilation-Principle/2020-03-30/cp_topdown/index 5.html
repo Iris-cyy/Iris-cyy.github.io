@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Notes,CP," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="花落知多少" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Recursive-Descent 不能出现左递归or间接左递归（因为左递归可能会造成无限循环）  左递归：A → A a | … 间接左递归：A → B b | ..  ,  B → A a | …   BNF要被扩展为EBNF  eg. expr → expr addop term | term EBNF: expr → term {addop term}    文法改造——消除左递归 &#x2F; 提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Compilation Principle】 Top-Down Parsing">
+<meta property="og:url" content="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-30/cp_topdown/index.html">
+<meta property="og:site_name" content="花落知多少">
+<meta property="og:description" content="Recursive-Descent 不能出现左递归or间接左递归（因为左递归可能会造成无限循环）  左递归：A → A a | … 间接左递归：A → B b | ..  ,  B → A a | …   BNF要被扩展为EBNF  eg. expr → expr addop term | term EBNF: expr → term {addop term}    文法改造——消除左递归 &#x2F; 提">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin4.assets/image-20200414171109629.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin4.assets/image-20200414171158493.png">
+<meta property="article:published_time" content="2020-03-30T03:19:55.000Z">
+<meta property="article:modified_time" content="2020-04-14T13:45:56.867Z">
+<meta property="article:author" content="Irisssy">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="CP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iris-cyy.github.io/images/comp/com-prin4.assets/image-20200414171109629.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'AWI44TKCWF',
+      apiKey: '47152bafbd084f0e2f14756524feff94',
+      indexName: 'blogIndex_NAME',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-30/cp_topdown/"/>
+
+
+
+
+
+  <title>【Compilation Principle】 Top-Down Parsing | 花落知多少</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98ba9ea0a4c9adce8b273e137e8bcf3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">花落知多少</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Nice to meet you :)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-30/cp_topdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irisssy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花落知多少">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Compilation Principle】 Top-Down Parsing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T11:19:55+08:00">
+                2020-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/Compilation-Principle/" itemprop="url" rel="index">
+                    <span itemprop="name">Compilation Principle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/Compilation-Principle/2020-03-30/cp_topdown/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/Compilation-Principle/2020-03-30/cp_topdown/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Notes/Compilation-Principle/2020-03-30/cp_topdown/" class="leancloud_visitors" data-flag-title="【Compilation Principle】 Top-Down Parsing">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Recursive-Descent"><a href="#Recursive-Descent" class="headerlink" title="Recursive-Descent"></a>Recursive-Descent</h2><ul>
+<li><p>不能出现左递归or间接左递归（因为左递归可能会造成无限循环）</p>
+<blockquote>
+<p>左递归：A → A a | …</p>
+<p>间接左递归：A → B b | ..  ,  B → A a | …</p>
+</blockquote>
+</li>
+<li><p>BNF要被扩展为EBNF</p>
+<blockquote>
+<p>eg. expr → expr addop term | term</p>
+<p>EBNF: expr → term {addop term}</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="文法改造——消除左递归-提取左因子"><a href="#文法改造——消除左递归-提取左因子" class="headerlink" title="文法改造——消除左递归 / 提取左因子"></a>文法改造——消除左递归 / 提取左因子</h3><h4 id="消除左递归"><a href="#消除左递归" class="headerlink" title="消除左递归"></a>消除左递归</h4><h5 id="Case-1-simple-immediate-left-recursion"><a href="#Case-1-simple-immediate-left-recursion" class="headerlink" title="Case 1:  simple immediate left recursion"></a>Case 1:  simple immediate left recursion</h5><p>​    $A → Aα|β$</p>
+<p>  Rewrite:</p>
+<p>​    $A → βA′$</p>
+<p>​    $A′ → αA′|ε$</p>
+<h5 id="Case-2-general-immediate-left-recursion"><a href="#Case-2-general-immediate-left-recursion" class="headerlink" title="Case 2:  general immediate left recursion"></a>Case 2:  general immediate left recursion</h5><p>​    $A→Aα_1|Aα_2|⋯|Aα_n|β_1|β_2|⋯|β_m$</p>
+<p>  Rewrite:</p>
+<p>​    $A→β_1A′|β_2A′|⋯|β_mA′$</p>
+<p>​    $A′→α_1A′|α_2A′|⋯|α_nA′|ε$</p>
+<h5 id="Case-3-general-left-recursion"><a href="#Case-3-general-left-recursion" class="headerlink" title="Case 3:  general left recursion"></a>Case 3:  general left recursion</h5><p>这里描述的算法仅是指不带有产生式且不带有循环的文法（其中循环是至少有一步是以相同的非终结符：$A \Rightarrow \alpha \Rightarrow^* A$开始和结束的推导。循环几乎肯定能导致分析程序进入无穷循环，而且带有循环的文法从不作为程序设计语言文法出现。程序设计语言文法确实是有产生式，但这经常是在非常有限的格式中，所以这个算法对于这些文法也几乎总是有效的。</p>
+<p>该算法的方法是：为语言的所有非终结符选择任意顺序，如$A_1 , … , A_m$，接着再消除不增加$A_i’ $索引的所有左递归。它消除所有$A_i→A_j \gamma$，其中$j≤i$形式的规则。如果按这样操作从1到m的每一个i，则由于这样的循环的每个步骤只增加索引，且不能再次到达原始索引，因此就不会留下任何递归循环了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i:&#x3D;1 to m do </span><br><span class="line">	for j:&#x3D;1 to i-1 do</span><br><span class="line">		replace each grammar rule choice of the form Ai→ Ajβ by the rule   </span><br><span class="line">			Ai→α1β|α2β| … |αkβ, where Aj→α1|α2| … |αk is the current rule for Aj.</span><br><span class="line">	remove, if necessary, immediate left recursion involving Ai</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>eg.</p>
+<p>A → B a | A a | c<br>B → B b | A b | d</p>
+<ol>
+<li><p>remove the immediate left recursion of  A<br>A → B a A’ | c A’<br>A’ → a A’ | ε<br>B → B b | A b| d</p>
+</li>
+<li><p>eliminate B → Ab by replacing A with its choices</p>
+<p>A → B a A’ | c A’<br>A’ → a A’ | ε<br>B → B b | B a A‘ b | c A’ b | d</p>
+</li>
+<li><p>remove the immediate left recursion of B</p>
+<p>A → B a A’ | c A’<br>A’ → a A’ | ε<br>B → c A’ b B’ | d B’<br>B’ → b B’ | a A’ b B’ | ε</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="提取左因子"><a href="#提取左因子" class="headerlink" title="提取左因子"></a>提取左因子</h4><p>当两个或更多文法规则选择共享一个通用前缀串时，需要提取左因子（因为lookahead是1的时候如果有两条产生式将不知道应该走哪条。</p>
+<p>如 A → αβ|αγ  $\Rightarrow$ A → α A’,  A’ → β|γ </p>
+<blockquote>
+<p>if-stmt → if (exp) statement | if (exp) statement else statement</p>
+<p>在这个文法中，提取了左因子的格式是</p>
+<p>​    if-stmt → if (exp) statement else-part<br>​    else-part → else statement | ε</p>
+</blockquote>
+<p><br></p>
+<h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><p>from <strong>L</strong>eft to right</p>
+<p><strong>L</strong>eft-most</p>
+<p>look-ahead: <strong>1</strong> symbol (top-down必须至少look-ahead一个字符)</p>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>如果一个文法的LL(1)分析表中每一项最多只有一个产生式，则该文法是LL(1)文法（LL(1)文法不能有歧义）</p>
+<h3 id="Basic-method"><a href="#Basic-method" class="headerlink" title="Basic method"></a>Basic method</h3><h4 id="Two-actions"><a href="#Two-actions" class="headerlink" title="Two actions"></a>Two actions</h4><ul>
+<li><strong>Generate</strong>：当分析栈顶是非终结符时，用文法$ A \rightarrow α$ 将A替换成α（注意：倒序进栈）</li>
+<li><p><strong>Match</strong>：栈顶是终结符时，将栈顶的符号和输入符号进行匹配</p>
+</li>
+<li><p>当分析栈和输入都为空时可以执行accept（代表文法分析顺利结束）</p>
+</li>
+<li><p>$ 表示栈底 / end of input</p>
+</li>
+</ul>
+<h4 id="Parsing-table"><a href="#Parsing-table" class="headerlink" title="Parsing table"></a>Parsing table</h4><ul>
+<li><p>由非终结符和终结符索引的二维数组，其中非终结符和终结符包括了要在恰当的分析步骤（包括代表输入结束的$）中使用的产生式选择。</p>
+</li>
+<li><p>这个表被称为$M[N, T]$，这里的$N$是文法的非终结符的集合，放在表格的纵向， $T$是终结符或记号的集合（不包含ε），放在表格的横向（$表示结束状态）。</p>
+</li>
+<li><p>空项表明一个潜在的错误</p>
+</li>
+</ul>
+<p><strong>构建分析表的规则：</strong></p>
+<ul>
+<li>如果$A→α$是一个产生式选择，且有推导$\alpha \Rightarrow^* a \beta$ 成立，其中 $α$ 是一个记号，则将$A→α$添加到表项目$M [A, a] $中。（First规则，根据可能出现的第一个终结符填表，在输入中给出了记号α，若α可为匹配生成一个a，则希望挑选规则A→α）</li>
+<li>如果$A \rightarrow \alpha$是一个产生式选择，且有推导$\alpha \Rightarrow^<em> ε$和 $S \,\$ \Rightarrow^</em> \beta A a \gamma$ 成立，其中$S$是开始符号，$a$是一个记号（或\$），则将$A→\alpha$添加到表项目$M [A, a]$中。（Follow规则，根据下一个可能出现的终结符填表，若A派生了空串（通过A→α），且如a 是一个在推导中可合法地出现在A之后的记号，则要挑选A→α以使A消失）</li>
+</ul>
+<blockquote>
+<p>以 S -&gt; (S)S|ε 为例，分析过程如下表所示：（Parsing表示分析栈中内容，Input表示输入内容）</p>
+<p><img src="/images/comp/com-prin4.assets/image-20200414171109629.png" alt="image-20200414171109629" style="zoom: 67%;" /></p>
+<p>Parsing Table</p>
+<p><img src="/images/comp/com-prin4.assets/image-20200414171158493.png" alt="image-20200414171158493" style="zoom:67%;" /></p>
+</blockquote>
+<p>A parsing algorithm using the LL(1) parsing table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">push the start symbol onto the top the parsing stack;</span><br><span class="line">while the top of the parsing stack !&#x3D; $ and the next   </span><br><span class="line">     input token !&#x3D; $ do</span><br><span class="line">    if the top of the parsing stack is terminal a </span><br><span class="line">      and the next input token &#x3D; a</span><br><span class="line">    then (* match *)</span><br><span class="line">         pop the parsing stack;</span><br><span class="line">         advance the input;</span><br><span class="line">    else if the top of the parsing stack is non-terminal A</span><br><span class="line">      and the next input token is terminal a</span><br><span class="line">      and parsing table entry M[A,a] contains production A→X1X2…Xn</span><br><span class="line">    then (* generate *)</span><br><span class="line">         pop the parsing stack;</span><br><span class="line">         for i:&#x3D;n downto 1 do</span><br><span class="line">                push Xi onto the parsing stack;</span><br><span class="line">    else error;</span><br><span class="line">    </span><br><span class="line">if the top of the parsing stack &#x3D; $ </span><br><span class="line">  and the next input token &#x3D; $</span><br><span class="line">then accept</span><br><span class="line">else error.</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="First-and-Follow-Sets"><a href="#First-and-Follow-Sets" class="headerlink" title="First and Follow Sets"></a>First and Follow Sets</h2><h3 id="First-sets"><a href="#First-sets" class="headerlink" title="First sets"></a>First sets</h3><blockquote>
+<p>某文法符号展开后可能出现在第一个位置的终结符的集合</p>
+</blockquote>
+<p>令X为一个文法符号（一个终结符或非终结符）或ε，则集合First (X) 由终结符组成，此外可能还有ε。定义如下：</p>
+<ul>
+<li><p>若X是终结符或ε，则First(X) = {X}。</p>
+</li>
+<li><p>若X是非终结符，则对于每个产生式 X→X1 X2 … Xn ，First (X)都包含了First(X1) - {ε}。</p>
+<p>若对于某个 i &lt; n，所有的集合First(X1), … , First(Xi) 都包括了ε，则First(X) 也包括了First(Xi + 1) - {ε}。</p>
+<p>若所有集合First(X1), …, First(Xn)包括了ε，则First(X)也包括ε。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for all non-terminal A do First(A):&#x3D;&#123; &#125;;</span><br><span class="line">while there are changes to any First(A) do</span><br><span class="line">	for each production choice A→X1X2…Xndo</span><br><span class="line">		k :&#x3D; 1; Continue :&#x3D; true;</span><br><span class="line">		while Continue &#x3D; true and k &lt;&#x3D; n do</span><br><span class="line">			add First(Xk)-&#123;ε&#125; to First(A);</span><br><span class="line">			if ε is not in First(Xk) then Continue:&#x3D; false;</span><br><span class="line">			k :&#x3D; k+1;</span><br><span class="line">		if Continue &#x3D; true then add ε to First(A);</span><br></pre></td></tr></table></figure>
+<p>Definition:</p>
+<p>  A non-terminal A is <strong>nullable</strong> if there exists a derivation A⇒∗ε</p>
+<p>Theorem:</p>
+<p>  A non-terminal A is <strong>nullable</strong> if and only if First(A) contains ε.</p>
+<h3 id="Follow-sets"><a href="#Follow-sets" class="headerlink" title="Follow sets"></a>Follow sets</h3><blockquote>
+<p>可能出现在某文法符号后一个位置的终结符的集合</p>
+</blockquote>
+<p>给出一个非终结符A，那么集合Follow(A)则是由终结符组成，此外可能还有$。定义如下：</p>
+<ul>
+<li><p>若A是开始符号，则 $ 就在Follow(A)中。</p>
+</li>
+<li><p>若存在产生式B → αAγ，则First(γ) - {ε}在Follow(A)中。</p>
+</li>
+<li><p>若存在产生式B → αAγ，且ε在First(γ)中，则Follow(A)包括Follow(B)。</p>
+</li>
+</ul>
+<p>注意：ε永远不可能是Follow集合的元素，且Follow集合仅针对非终结符进行定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">follow(start-symbol):&#x3D;&#123;$&#125;;</span><br><span class="line">for all non-terminals A≠start-symbol do follow(A):&#x3D;&#123;&#125;;</span><br><span class="line">	while there changes to any follow sets do</span><br><span class="line">		for each production A→X1X2…Xn do</span><br><span class="line">			for each Xi that is a non-terminal do</span><br><span class="line">				add First(Xi+1Xi+2…Xn) –&#123;ε&#125; to Follow(Xi)</span><br><span class="line">				if ε is in First(Xi+1Xi+2…Xn) then</span><br><span class="line">					add Follow(A) to Follow(Xi)</span><br></pre></td></tr></table></figure>
+<h3 id="Constructing-LL-1-parsing-table"><a href="#Constructing-LL-1-parsing-table" class="headerlink" title="Constructing LL(1) parsing table"></a>Constructing LL(1) parsing table</h3><p>为每个非终结符A和产生式 A→α 重复以下两个步骤：</p>
+<ol>
+<li>对于First(α)中的每个记号a，都将A→α添加到项目M[A, a]中。</li>
+<li>若ε在First(α)中，则对于Follow(A) 的每个元素a（记号或是$），都将A→α添加到M[A, a]中。</li>
+</ol>
+<h4 id="LL-1-文法的判定"><a href="#LL-1-文法的判定" class="headerlink" title="LL(1)文法的判定"></a>LL(1)文法的判定</h4><p>A grammar in BNF is LL(1) if the following conditions are satisfied.</p>
+<ol>
+<li>For every production $A→α_1|α_2|…|α_n$,  $First(α_i)∩First(α_j)$ is empty for all i and j, $1≤i,j≤n,i≠j$</li>
+<li>For every non-terminal A such that First(A) contains ε, First(A) ∩ Follow(A) is empty.</li>
+</ol>
+<p><br></p>
+<h2 id="Error-Recovery"><a href="#Error-Recovery" class="headerlink" title="Error  Recovery"></a>Error  Recovery</h2><p>\<to be continued></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Notes/" rel="tag"># Notes</a>
+          
+            <a href="/tags/CP/" rel="tag"># CP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Algorithm/2020-03-18/quickpow/" rel="next" title="【Algorithm】矩阵快速幂">
+                <i class="fa fa-chevron-left"></i> 【Algorithm】矩阵快速幂
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Python/2020-04-13/py_library/" rel="prev" title="【Python】Library">
+                【Python】Library <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar2.jpg"
+                alt="Irisssy" />
+            
+              <p class="site-author-name" itemprop="name">Irisssy</p>
+              <p class="site-description motion-element" itemprop="description">ZJUer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Iris-cyy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:irisssy_@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/irisssychen" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook-square"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/Iris_cyy" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Recursive-Descent"><span class="nav-number">1.</span> <span class="nav-text">Recursive-Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文法改造——消除左递归-提取左因子"><span class="nav-number">1.1.</span> <span class="nav-text">文法改造——消除左递归 &#x2F; 提取左因子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消除左递归"><span class="nav-number">1.1.1.</span> <span class="nav-text">消除左递归</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Case-1-simple-immediate-left-recursion"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Case 1:  simple immediate left recursion</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Case-2-general-immediate-left-recursion"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Case 2:  general immediate left recursion</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Case-3-general-left-recursion"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">Case 3:  general left recursion</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取左因子"><span class="nav-number">1.1.2.</span> <span class="nav-text">提取左因子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LL-1-Parsing"><span class="nav-number">2.</span> <span class="nav-text">LL(1) Parsing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-method"><span class="nav-number">2.2.</span> <span class="nav-text">Basic method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-actions"><span class="nav-number">2.2.1.</span> <span class="nav-text">Two actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parsing-table"><span class="nav-number">2.2.2.</span> <span class="nav-text">Parsing table</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-and-Follow-Sets"><span class="nav-number">3.</span> <span class="nav-text">First and Follow Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#First-sets"><span class="nav-number">3.1.</span> <span class="nav-text">First sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Follow-sets"><span class="nav-number">3.2.</span> <span class="nav-text">Follow sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructing-LL-1-parsing-table"><span class="nav-number">3.3.</span> <span class="nav-text">Constructing LL(1) parsing table</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-1-文法的判定"><span class="nav-number">3.3.1.</span> <span class="nav-text">LL(1)文法的判定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-Recovery"><span class="nav-number">4.</span> <span class="nav-text">Error  Recovery</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irisssy</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz", "V5WyXiF6o1Fz8ohjJ2dW4Ozd");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
