@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-04-14/cp_bottomup/</loc>
+    <loc>https://iris-cyy.github.io/Notes/Python/2020-03-17/python_sequence/</loc>
     
-    <lastmod>2020-04-21T13:08:53.889Z</lastmod>
+    <lastmod>2020-04-21T13:54:22.027Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://iris-cyy.github.io/Notes/Python/2020-03-17/python_sequence/</loc>
+    <loc>https://iris-cyy.github.io/Notes/Python/2020-04-13/py_library/</loc>
     
-    <lastmod>2020-04-21T02:10:43.952Z</lastmod>
+    <lastmod>2020-04-21T13:15:36.710Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-04-14/cp_bottomup/</loc>
+    
+    <lastmod>2020-04-21T13:08:53.889Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>https://iris-cyy.github.io/Notes/Python/2020-02-25/python_basis/</loc>
     
     <lastmod>2020-04-13T11:57:44.446Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/Notes/Python/2020-04-13/py_library/</loc>
-    
-    <lastmod>2020-04-13T10:48:21.691Z</lastmod>
     
   </url>
   
