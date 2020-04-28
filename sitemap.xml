@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iris-cyy.github.io/about/index.html</loc>
+    
+    <lastmod>2020-04-26T08:44:01.610Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iris-cyy.github.io/Notes/Python/2020-03-17/python_sequence/</loc>
     
     <lastmod>2020-04-21T13:54:22.027Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_intro/</loc>
     
     <lastmod>2020-03-10T04:53:59.436Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://iris-cyy.github.io/about/index.html</loc>
-    
-    <lastmod>2020-02-29T06:10:25.212Z</lastmod>
     
   </url>
   
