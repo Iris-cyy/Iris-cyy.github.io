@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iris-cyy.github.io/"/>
-  <updated>2020-04-14T13:58:15.629Z</updated>
+  <updated>2020-05-07T03:16:15.656Z</updated>
   <id>https://iris-cyy.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Python】Function</title>
+    <link href="https://iris-cyy.github.io//Notes/Python/2020-05-07/python_func/"/>
+    <id>https://iris-cyy.github.io//Notes/Python/2020-05-07/python_func/</id>
+    <published>2020-05-07T02:41:40.000Z</published>
+    <updated>2020-05-07T03:16:15.656Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;函数名&gt; <span class="params">(&lt;参数列表&gt;)</span>:</span></span><br><span class="line">&lt;函数体&gt;</span><br><span class="line"><span class="keyword">return</span> &lt;返回值列表&gt;</span><br></pre></td></tr></table></figure><ul><li><p>形参不需要声明类型，也不需要指定函数返回值类型</p></li><li><p>允许嵌套定义函数</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span clas
+      
+    
+    </summary>
+    
+      <category term="Notes" scheme="https://iris-cyy.github.io/categories/Notes/"/>
+    
+      <category term="Python" scheme="https://iris-cyy.github.io/categories/Notes/Python/"/>
+    
+    
+      <category term="Notes" scheme="https://iris-cyy.github.io/tags/Notes/"/>
+    
+      <category term="Python" scheme="https://iris-cyy.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>【Python】Exception</title>
@@ -558,35 +587,6 @@
       
       
         &lt;h2 id=&quot;Data-Definition-Language&quot;&gt;&lt;a href=&quot;#Data-Definition-Language&quot; class=&quot;headerlink&quot; title=&quot;Data Definition Language&quot;&gt;&lt;/a&gt;Data Definitio
-      
-    
-    </summary>
-    
-      <category term="Notes" scheme="https://iris-cyy.github.io/categories/Notes/"/>
-    
-      <category term="Database System" scheme="https://iris-cyy.github.io/categories/Notes/Database-System/"/>
-    
-    
-      <category term="Notes" scheme="https://iris-cyy.github.io/tags/Notes/"/>
-    
-      <category term="DBS" scheme="https://iris-cyy.github.io/tags/DBS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【DBS】Lecture 04. Advanced SQL</title>
-    <link href="https://iris-cyy.github.io//Notes/Database-System/2020-02-11/dbs04/"/>
-    <id>https://iris-cyy.github.io//Notes/Database-System/2020-02-11/dbs04/</id>
-    <published>2020-02-11T08:32:39.000Z</published>
-    <updated>2020-02-11T08:39:21.673Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Integrity-Constraint"><a href="#Integrity-Constraint" class="headerlink" title="Integrity Constraint"></a>Integrity Constraint</h3><ul><li>not null (主码不可为空)</li><li>unique</li><li>check ( \<predicate> )</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> branch2(branch_name <span class="built_in">varchar</span>(<span class="number">30</span>) primary <span class="keyword">key</span>,</span><br><span class="line">                     branch_city <span class="built_in">varchar</span>(<span class="number">30</span>),</span><br><span class="line">                     assets <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">                     <span class="keyword">check</span> (assets &gt;= <span class="number">100</span>) );</span><br></pre></td></tr></table></figure><h3 id="Domain-Constraint"><a href="#Domain-Constraint" class="headerlink" title="Domain Constraint"></a>Domain Constraint</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">domain</span> hourly-wage <span class="built_in">numeric</span>(<span class="number">5</span>,<span class="number">2</span>);</span><br><span class="line">constraint value-test <span class="keyword">check</span> (<span class="keyword">value</span> &gt;= <span class="number">4.00</span>);</span><br></pre></td></tr></table></figure><h3 id="Referential-Integrity"><a href="#Referential-Integrity" class="headerlink" title="Referential Integrity"></a>Referential Integrity</h3><p>Account (<u>account-number</u>, branch-name, balance) — 参照关系 </p><p>Branch (<u>branch-name</u>, branch-city, assets) — 被参照关系 </p><p><img src="/images/dbs/dbs04.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9pcmlzc3N5LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70-20200211163658066.png" width=80%></p><p><strong>cascading action</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">table</span> course</span><br><span class="line">(...</span><br><span class="line"><span class="keyword">foreign</span> <span class="keyword">key</span> (dept_name) <span class="keyword">references</span> department</span><br><span class="line"><span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span></span><br><span class="line"><span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">cascade</span>,</span><br><span class="line">...);</span><br></pre></td></tr></table></figure><h3 id="Assertion"><a href="#Assertion" class="headerlink" title="Assertion"></a>Assertion</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">assertion</span> &lt;<span class="keyword">assertion</span>-<span class="keyword">name</span>&gt;</span><br><span class="line"><span class="keyword">CHECK</span> &lt;predicate&gt;;</span><br></pre></td></tr></table></figure><p>But SQL does not provide a construct for asserting: <u>for all X, P (X)</u></p><p>So it is achieved in a round -about fashion, using: <u>not exists X, such that not P (X)</u></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">assertion</span> credits_earned_constraint <span class="keyword">check</span></span><br><span class="line">  (<span class="keyword">not</span> <span class="keyword">exists</span>  (<span class="keyword">select</span> <span class="keyword">ID</span></span><br><span class="line">                <span class="keyword">from</span> student</span><br><span class="line">                <span class="keyword">where</span> tot_cred &lt;&gt; (<span class="keyword">select</span> <span class="keyword">sum</span> (credits) </span><br><span class="line">                                   <span class="keyword">from</span> takes <span class="keyword">natural</span> <span class="keyword">join</span> course </span><br><span class="line">                                   <span class="keyword">where</span> student. <span class="keyword">ID</span> = takes. <span class="keyword">ID</span></span><br><span class="line">                                   <span class="keyword">and</span> grade <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">and</span> grade &lt;&gt; <span class="string">'F'</span>)</span><br><span class="line">                )</span><br><span class="line">   );</span><br></pre></td></tr></table></figure><p><br></p><h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><p><img src="/images/dbs/dbs04.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9pcmlzc3N5LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70-20200211163247840.png" alt="trigger"></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;CREATE/REPLACE&gt; trigger secure_ student before &lt;insert/delete/update&gt; on student</span><br><span class="line"><span class="keyword">Begin</span></span><br><span class="line"><span class="keyword">IF</span>(to_char(<span class="keyword">sysdate</span>, <span class="string">'DY'</span>) <span class="keyword">in</span>（<span class="string">'星期六'</span>，<span class="string">'星期日'</span>))</span><br><span class="line"><span class="keyword">OR</span>(to_char(<span class="keyword">sysdate</span>, <span class="string">'HH24'</span>) <span class="keyword">NOT</span> <span class="keyword">Between</span> <span class="number">8</span> <span class="keyword">and</span> <span class="number">17</span>) </span><br><span class="line"><span class="keyword">THEN</span> raise_ application_error(<span class="number">-20506</span>, <span class="string">'你只能在上班时间修改数据'</span>);</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">trigger</span> &lt;trigger_name&gt;</span><br></pre></td></tr></table></figure><h3 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h3><ul><li>Security Specification</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;privilege <span class="keyword">list</span>&gt; <span class="keyword">on</span> &lt;<span class="keyword">table</span>/<span class="keyword">view</span>&gt;</span><br><span class="line"><span class="keyword">TO</span> &lt;<span class="keyword">user</span> <span class="keyword">list</span>&gt;</span><br></pre></td></tr></table></figure><p>  \<user list>: user-ids / public / a role</p><ul><li>Privilege</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">select</span>,<span class="keyword">insert</span> <span class="keyword">ON</span> branch <span class="keyword">TO</span> U1,U2,U3</span><br></pre></td></tr></table></figure><p>  select / insert / update / delete / references / all privileges / all</p><ul><li><p>Roles</p><p>permit common privileges for a class of users can be specified just once</p></li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">role</span> teller; </span><br><span class="line"><span class="keyword">Create</span> <span class="keyword">role</span> manager; </span><br><span class="line"><span class="keyword">Grant</span> <span class="keyword">select</span> <span class="keyword">on</span> branch <span class="keyword">to</span> teller; </span><br><span class="line"><span class="keyword">Grant</span> <span class="keyword">update</span> (balance) <span class="keyword">on</span> <span class="keyword">account</span> <span class="keyword">to</span> teller; </span><br><span class="line"><span class="keyword">Grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> <span class="keyword">account</span> <span class="keyword">to</span> manager; </span><br><span class="line"><span class="keyword">Grant</span> teller <span class="keyword">to</span> manager; </span><br><span class="line"><span class="keyword">Grant</span> teller <span class="keyword">to</span> alice, bob; </span><br><span class="line"><span class="keyword">Grant</span> manager <span class="keyword">to</span> avi;</span><br></pre></td></tr></table></figure><ul><li>Revoke</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;privilege <span class="keyword">list</span>&gt; <span class="keyword">ON</span> &lt;<span class="keyword">table</span>/<span class="keyword">view</span>&gt;</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">user</span> <span class="keyword">list</span>&gt; [restrict/<span class="keyword">cascade</span>]</span><br></pre></td></tr></table></figure><p>  restrict：仅撤回用户本人</p><p>  cascade：连锁撤回，同时撤回用户对外的授权</p><h3 id="Audit-Trails"><a href="#Audit-Trails" class="headerlink" title="Audit Trails"></a>Audit Trails</h3><p>log all changes to the database</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AUDIT &lt;st-opt&gt;[BY &lt;users&gt;][BY session/access][whenever successful / whenever not seccessful]</span><br></pre></td></tr></table></figure><p>\<st-opt>:  table, view, role, index</p><p>NOAUDIT… 取消审计</p><p>by\<users>缺省时对所有用户审计</p><p>by session：每次会话期间，相同类型需审计的SQL语句仅记录一次</p><ul><li>Audit in oracle:</li></ul><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AUDIT &lt;obj-opt&gt; ON &lt;obj&gt;/DEFAULT [by session / by access][whenever successful / whenever not successful]</span><br></pre></td></tr></table></figure><p>  实体审计对所有用户起作用</p><p>  ON \<obj> 指出审计对象表、视图名。 </p><p>  ON DEFAULT 对其后创建的所有对象起作用。 </p><p>  取消审计：NOAUDIT … </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;Integrity-Constraint&quot;&gt;&lt;a href=&quot;#Integrity-Constraint&quot; class=&quot;headerlink&quot; title=&quot;Integrity Constraint&quot;&gt;&lt;/a&gt;Integrity Constraint&lt;/h3&gt;&lt;
       
     
     </summary>
