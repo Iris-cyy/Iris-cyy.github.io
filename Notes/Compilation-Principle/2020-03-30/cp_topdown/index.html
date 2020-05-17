@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin4.assets/image-20200414171109629.png">
 <meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin4.assets/image-20200414171158493.png">
 <meta property="article:published_time" content="2020-03-30T03:19:55.000Z">
-<meta property="article:modified_time" content="2020-04-20T01:55:51.756Z">
+<meta property="article:modified_time" content="2020-05-17T12:22:17.568Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="CP">
@@ -502,15 +502,15 @@
 <h4 id="Parsing-table"><a href="#Parsing-table" class="headerlink" title="Parsing table"></a>Parsing table</h4><ul>
 <li><p>由非终结符和终结符索引的二维数组，其中非终结符和终结符包括了要在恰当的分析步骤（包括代表输入结束的$）中使用的产生式选择。</p>
 </li>
-<li><p>这个表被称为$M[N, T]$，这里的$N$是文法的非终结符的集合，放在表格的纵向， $T$是终结符或记号的集合（不包含ε），放在表格的横向（$表示结束状态）。</p>
+<li><p>这个表被称为$M[N, T]​$，这里的$N​$是文法的非终结符的集合，放在表格的纵向， $T​$是终结符或记号的集合（不包含ε），放在表格的横向（$表示结束状态）。</p>
 </li>
 <li><p>空项表明一个潜在的错误</p>
 </li>
 </ul>
 <p><strong>构建分析表的规则：</strong></p>
 <ul>
-<li>如果$A→α$是一个产生式选择，且有推导$\alpha \Rightarrow^* a \beta$ 成立，其中 $α$ 是一个记号，则将$A→α$添加到表项目$M [A, a] $中。（First规则，根据可能出现的第一个终结符填表，在输入中给出了记号α，若α可为匹配生成一个a，则希望挑选规则A→α）</li>
-<li>如果$A \rightarrow \alpha$是一个产生式选择，且有推导$\alpha \Rightarrow^<em> ε$和 $S \,\$ \Rightarrow^</em> \beta A a \gamma$ 成立，其中$S$是开始符号，$a$是一个记号（或\$），则将$A→\alpha$添加到表项目$M [A, a]$中。（Follow规则，根据下一个可能出现的终结符填表，若A派生了空串（通过A→α），且如a 是一个在推导中可合法地出现在A之后的记号，则要挑选A→α以使A消失）</li>
+<li>如果$A→α​$是一个产生式选择，且有推导$\alpha \Rightarrow^* a \beta​$ 成立，其中 $α​$ 是一个记号，则将$A→α​$添加到表项目$M [A, a] ​$中。（First规则，根据可能出现的第一个终结符填表，在输入中给出了记号α，若α可为匹配生成一个a，则希望挑选规则A→α）</li>
+<li>如果$A \rightarrow \alpha$是一个产生式选择，且有推导$\alpha \Rightarrow^* ε$和 $S \,\$ \Rightarrow^* \beta A a \gamma$ 成立，其中$S$是开始符号，$a$是一个记号（或\$），则将$A→\alpha$添加到表项目$M [A, a]$中。（Follow规则，根据下一个可能出现的终结符填表，若A派生了空串（通过A→α），且如a 是一个在推导中可合法地出现在A之后的记号，则要挑选A→α以使A消失）</li>
 </ul>
 <blockquote>
 <p>以 S -&gt; (S)S|ε 为例，分析过程如下表所示：（Parsing表示分析栈中内容，Input表示输入内容）</p>

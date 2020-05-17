@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Notes,CP," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="花落知多少" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Compilers: computer languages  Translate one language to anotherSource language(input) to target language (output)Source language : high-level language c or c++Target language : object code, machine c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Compilation Principle】 Introduction">
+<meta property="og:url" content="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_intro/index.html">
+<meta property="og:site_name" content="花落知多少">
+<meta property="og:description" content="Compilers: computer languages  Translate one language to anotherSource language(input) to target language (output)Source language : high-level language c or c++Target language : object code, machine c">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307101832977.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307124000496.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307124410124.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307124856028.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307145447835.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307151136599.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307150619488.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307165109546.png">
+<meta property="og:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307165319770.png">
+<meta property="article:published_time" content="2020-03-04T09:21:11.000Z">
+<meta property="article:modified_time" content="2020-03-10T04:53:59.436Z">
+<meta property="article:author" content="Irisssy">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="CP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iris-cyy.github.io/images/comp/com-prin1.assets/image-20200307101832977.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'AWI44TKCWF',
+      apiKey: '47152bafbd084f0e2f14756524feff94',
+      indexName: 'blogIndex_NAME',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_intro/"/>
+
+
+
+
+
+  <title>【Compilation Principle】 Introduction | 花落知多少</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98ba9ea0a4c9adce8b273e137e8bcf3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">花落知多少</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Nice to meet you :)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://iris-cyy.github.io/Notes/Compilation-Principle/2020-03-04/cp_intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Irisssy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花落知多少">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Compilation Principle】 Introduction</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-04T17:21:11+08:00">
+                2020-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/Compilation-Principle/" itemprop="url" rel="index">
+                    <span itemprop="name">Compilation Principle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Notes/Compilation-Principle/2020-03-04/cp_intro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Notes/Compilation-Principle/2020-03-04/cp_intro/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Notes/Compilation-Principle/2020-03-04/cp_intro/" class="leancloud_visitors" data-flag-title="【Compilation Principle】 Introduction">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Compilers: computer languages</p>
+<blockquote>
+<p>Translate one language to another<br>Source language(input) to target language (output)<br>Source language : high-level language c or c++<br>Target language : object code, machine code (machine instruction)<br>一般是从高级语言 -&gt; 低级语言，但是不一定</p>
+</blockquote>
+<p><br></p>
+<h2 id="A-Brief-History-of-Compiler"><a href="#A-Brief-History-of-Compiler" class="headerlink" title="A Brief History of Compiler"></a>A Brief History of Compiler</h2><ul>
+<li><p>Machine language: programs were written in machine language in late 1940s (c706 0000 0002)</p>
+</li>
+<li><p>Assembly language</p>
+<blockquote>
+<p>Assembler</p>
+<p>Defects: difficult  to read/understand, depend on the particular machine</p>
+</blockquote>
+</li>
+<li><p>FORTRAN: Between 1954 and 1957, by IBM, John Backus</p>
+<blockquote>
+<p>完全静态的语言（运行前内存分配就已固定，没有指针 -&gt; 指针式动态内存分配的工具）</p>
+<p>多用于工业控制</p>
+<p>对语言进行层次划分，将语法分为type0, type1, type2, type3，四个层次从0-3互为包含关系（从0-3可以看成是从大到小的同心圆）</p>
+</blockquote>
+</li>
+<li><p>Parsing problem: 1960s and 1970s</p>
+</li>
+<li>Optimization techniques: improve compiler efficiency (时间效率、空间效率)</li>
+<li>Compiler-compilers (parser generator, 语法分析器)</li>
+<li>YACC (yet another compiler-compiler, 语法分析器): 1975, by Steve Johnson for UNIX.</li>
+<li>Lex (词法分析器): 1975 by Mike Lest</li>
+</ul>
+<p><br></p>
+<h2 id="Programs-related-to-compilers"><a href="#Programs-related-to-compilers" class="headerlink" title="Programs related to compilers"></a>Programs related to compilers</h2><ul>
+<li><p>Interpreters</p>
+<p>解释器，与编译器功能相同</p>
+</li>
+<li><p>Assemblers</p>
+<p>汇编器，与编译器配合使用</p>
+<p>source code —&gt;（编译器）—&gt; assembly code —&gt;（汇编器）—&gt; object code</p>
+</li>
+<li><p>Linkers</p>
+<p>连接器（拼接成可执行文件）</p>
+</li>
+<li><p>Loaders</p>
+<p>重定位（相对地址）</p>
+</li>
+<li><p>Preprocessors</p>
+<p>预处理，删除注释、做include和宏定义</p>
+</li>
+<li><p>Editors</p>
+<p>编译器，生成标准文件</p>
+</li>
+<li><p>Debuggers</p>
+<p>调试器</p>
+</li>
+<li><p>Profilers</p>
+<p>手机程序运行中的相关信息，为程序改进提供信息</p>
+</li>
+<li><p>Project managers</p>
+<p>多文件操作（project），引入控制、多人协作</p>
+</li>
+</ul>
+<p><br></p>
+<h2 id="The-Translation-Process"><a href="#The-Translation-Process" class="headerlink" title="The Translation Process"></a>The Translation Process</h2><p><img src="/images/comp/com-prin1.assets/image-20200307101832977.png" alt="image-20200307101832977" style="zoom: 60%;" /></p>
+<blockquote>
+<p><strong>Scanner</strong>：词法分析（lexical analysis）</p>
+<p><strong>Token</strong>：单词、令环（不可分割的最小单位）</p>
+<p><strong>Parser</strong>：语法分析（syntax analysis）</p>
+<p><strong>Syntax tree</strong>：语法树</p>
+<p><strong>Semantic Analyzer</strong>：语义分析器（Semantic analysis）</p>
+<p><strong>Annotated tree</strong>：带注释的树（标注语义信息）</p>
+<p><strong>Source code optimizer</strong>：优化器（源程序代码级优化，依赖源代码特性），从而提高效率</p>
+<p><strong>Intermediate code</strong>：中间代码（m种源代码 -&gt; n种目标代码，有m*n种映射；如果有中间代码，减少至m+n种）</p>
+<p><strong>Code generator</strong>：代码生成器</p>
+<p><strong>Target code</strong>：目标码</p>
+<p><strong>Target code optimizer</strong>：目标码优化，依赖目标码特性</p>
+<p><strong>Literal table</strong>：常量表</p>
+<p><strong>Symbol table</strong>：符号表（重要），用于提升性能</p>
+<p><strong>Error handler</strong>：用于错误处理和错误恢复（容错性）</p>
+</blockquote>
+<h3 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h3><p>词法分析（lexical analysis）</p>
+<p>输入符号流，输出token（不管值）</p>
+<p>同时将标识符放入<code>symbol table</code>，将常量放入<code>literal table</code></p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307124000496.png" alt="image-20200307124000496" style="zoom:55%;" /></p>
+<h3 id="Parser"><a href="#Parser" class="headerlink" title="Parser"></a>Parser</h3><p>语法分析（syntax analysis）</p>
+<p>输入符号（token），输出语法树（syntax tree）或解析树（parse tree）</p>
+<p>在语法树中，叶子对应终结符，非叶节点对应非终结符</p>
+<p><strong>Parse Tree</strong>：（具体）</p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307124410124.png" alt="image-20200307124410124" style="zoom:55%;" /></p>
+<p><strong>Syntax Tree</strong>：（抽象，parse tree的压缩）</p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307124856028.png" alt="image-20200307124856028" style="zoom:50%;" /></p>
+<h3 id="Semantic-analyzer"><a href="#Semantic-analyzer" class="headerlink" title="Semantic analyzer"></a>Semantic analyzer</h3><p>语义分析器</p>
+<ul>
+<li>静态语义（static semantics）：包括声明和类型检查（编译时可以确定）</li>
+<li>动态语义（dynamic semantics）</li>
+</ul>
+<p>根据语义信息得到属性（attribute） –&gt; 语义信息语法化</p>
+<p>例如加入“类型”这一语义属性（作用：保证程序安全）</p>
+<p><strong>Annotated Tree</strong>：</p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307145447835.png" alt="image-20200307145447835" style="zoom:55%;" /></p>
+<h3 id="Source-code-optimizer"><a href="#Source-code-optimizer" class="headerlink" title="Source code optimizer"></a>Source code optimizer</h3><p>源代码级优化</p>
+<p>生成中间代码（intermediate code or IR） –&gt; 表示形态主要有三地址码（three-address code）、P-code两种</p>
+<ul>
+<li>三地址码：比较接近高级语言</li>
+<li>P-code：pascal语言的中间代码（接近机器语言）</li>
+</ul>
+<p>会进行例如常量叠加等操作（不同的编译器执行的优化种类和优化阶段位置都会有差异）</p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307151136599.png" alt="image-20200307151136599" style="zoom:50%;" /></p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307150619488.png" alt="image-20200307150619488" style="zoom:55%;" /></p>
+<h3 id="Code-generator"><a href="#Code-generator" class="headerlink" title="Code generator"></a>Code generator</h3><p>输入中间代码，输出机器码（目标机器用的代码）</p>
+<p><img src="/images/comp/com-prin1.assets/image-20200307165109546.png" alt="image-20200307165109546" style="zoom: 50%;" /></p>
+<h3 id="Target-code-optimizer"><a href="#Target-code-optimizer" class="headerlink" title="Target code optimizer"></a>Target code optimizer</h3><p>目标代码级优化</p>
+<ul>
+<li>选择寻址模式，提高性能</li>
+<li>用更快的指令代替慢的（如，用左移代替*2 –&gt; 速度：左移 &gt; 加法 &gt; 乘法）</li>
+<li>去除多余的和不必要的操作</li>
+</ul>
+<p><img src="/images/comp/com-prin1.assets/image-20200307165319770.png" alt="image-20200307165319770" style="zoom:50%;" /></p>
+<p><br></p>
+<h2 id="Major-Data-Structures-In-A-Compiler"><a href="#Major-Data-Structures-In-A-Compiler" class="headerlink" title="Major Data Structures In A Compiler"></a>Major Data Structures In A Compiler</h2><ul>
+<li><p>Tokens<br>可数，可通过定义枚举变量表示</p>
+</li>
+<li><p>Syntax Tree</p>
+<p>每个节点都是一条记录，递归表示parser和semantic analyzer收集到的信息</p>
+</li>
+<li><p>Symbol Table</p>
+<p>符号表。存储标识符信息（函数、变量、常量、数据类型等）</p>
+</li>
+<li><p>Literal Table</p>
+<p>常量表，存储常数、字符串等</p>
+</li>
+<li><p>Intermediate Code</p>
+<p>中间代码</p>
+</li>
+<li><p>Temporary Files</p>
+<p>用临时文件保存中间步骤</p>
+</li>
+</ul>
+<p><br></p>
+<h2 id="Other-Issues"><a href="#Other-Issues" class="headerlink" title="Other Issues"></a>Other Issues</h2><ul>
+<li><p><strong>Analysis</strong>：lexical analysis（词法分析）、syntax analysis（语法分析）、semantic analysis(optimization)（语义分析）</p>
+</li>
+<li><p><strong>Synthesis</strong>：code generation(optimization)（代码生成）</p>
+</li>
+</ul>
+<p>根据源代码和目标代码来划分前端后端：</p>
+<ul>
+<li><strong>Front end</strong>：scanner, parser, senabtic analyzer, intermediate code synthesis</li>
+<li><strong>Back end</strong>：code generator, optimization</li>
+<li><p>（可能有<strong>middle end</strong>，gcc4.0根据中间代码进行优化）</p>
+</li>
+<li><p><strong>Passes</strong>：Passes是相对于其余编译序列化的一个阶段或一组阶段，它在前一阶段完成之前不会启动，并且在任何后续阶段开始之前完成。对于一个程序要分为几个pass来多次处理，每个pass包含若干个阶段，商业级的编译器的pass数一般在30-40以上</p>
+</li>
+<li>Language definition </li>
+<li>Compiler options and interfaces</li>
+<li>Error handling: static error, execution error</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Notes/" rel="tag"># Notes</a>
+          
+            <a href="/tags/CP/" rel="tag"># CP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Tricks/2020-02-28/science_online/" rel="next" title="关于科学上网">
+                <i class="fa fa-chevron-left"></i> 关于科学上网
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Compilation-Principle/2020-03-04/cp_scanning/" rel="prev" title="【Compilation Principle】Scanning (Lexical Analysis)">
+                【Compilation Principle】Scanning (Lexical Analysis) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar2.jpg"
+                alt="Irisssy" />
+            
+              <p class="site-author-name" itemprop="name">Irisssy</p>
+              <p class="site-description motion-element" itemprop="description">ZJUer</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Iris-cyy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:irisssy_@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/irisssychen" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook-square"></i>Facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/Iris_cyy" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Brief-History-of-Compiler"><span class="nav-number">1.</span> <span class="nav-text">A Brief History of Compiler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programs-related-to-compilers"><span class="nav-number">2.</span> <span class="nav-text">Programs related to compilers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Translation-Process"><span class="nav-number">3.</span> <span class="nav-text">The Translation Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scanner"><span class="nav-number">3.1.</span> <span class="nav-text">Scanner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parser"><span class="nav-number">3.2.</span> <span class="nav-text">Parser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantic-analyzer"><span class="nav-number">3.3.</span> <span class="nav-text">Semantic analyzer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-code-optimizer"><span class="nav-number">3.4.</span> <span class="nav-text">Source code optimizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-generator"><span class="nav-number">3.5.</span> <span class="nav-text">Code generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Target-code-optimizer"><span class="nav-number">3.6.</span> <span class="nav-text">Target code optimizer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Major-Data-Structures-In-A-Compiler"><span class="nav-number">4.</span> <span class="nav-text">Major Data Structures In A Compiler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other-Issues"><span class="nav-number">5.</span> <span class="nav-text">Other Issues</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Irisssy</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz',
+        appKey: 'V5WyXiF6o1Fz8ohjJ2dW4Ozd',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("T8wx2t3wjTvICLSFOHMKGoCX-gzGzoHsz", "V5WyXiF6o1Fz8ohjJ2dW4Ozd");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
