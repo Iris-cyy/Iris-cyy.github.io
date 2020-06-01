@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="花落知多少">
 <meta property="og:description" content="123def &lt;函数名&gt; (&lt;参数列表&gt;):	&lt;函数体&gt;	return &lt;返回值列表&gt;  形参不需要声明类型，也不需要指定函数返回值类型  允许嵌套定义函数   全局变量用global进行引用（否则默认新建局部变量） 12345678def func():  global a  a &#x3D; 2  b &#x3D; 1  a &#x3D; 1b &#x3D; 2print(a, b)">
 <meta property="article:published_time" content="2020-05-07T02:41:40.000Z">
-<meta property="article:modified_time" content="2020-05-07T06:07:25.815Z">
+<meta property="article:modified_time" content="2020-06-01T08:11:39.864Z">
 <meta property="article:author" content="Irisssy">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Python">
@@ -450,6 +450,49 @@
 <p>可以用默认的参数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(a, b=<span class="number">2</span>)</span>:</span></span><br><span class="line">  ...</span><br><span class="line"><span class="comment"># 不给b传参时默认b=2</span></span><br></pre></td></tr></table></figure>
 <p>形参带*表示任意数量的参数作为元组传入，带**表示任意数量的参数作为字典传入（一般放在最后一个参数位置）</p>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>id(a)：返回对象唯一标识符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(a)</span><br><span class="line"><span class="number">140260960941824</span></span><br></pre></td></tr></table></figure>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>type(a)：返回变量类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(a)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h4><p>dir(a)：返回变量（数据类型、class等）可以调用的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(a)</span><br><span class="line">[<span class="string">'__abs__'</span>, <span class="string">'__add__'</span>, <span class="string">'__and__'</span>, <span class="string">'__class__'</span>, <span class="string">'__cmp__'</span>, <span class="string">'__coerce__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__div__'</span>, <span class="string">'__divmod__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__float__'</span>, <span class="string">'__floordiv__'</span>, <span class="string">'__format__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__hex__'</span>, <span class="string">'__index__'</span>, <span class="string">'__init__'</span>, <span class="string">'__int__'</span>, <span class="string">'__invert__'</span>, <span class="string">'__long__'</span>, <span class="string">'__lshift__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__neg__'</span>, <span class="string">'__new__'</span>, <span class="string">'__nonzero__'</span>, <span class="string">'__oct__'</span>, <span class="string">'__or__'</span>, <span class="string">'__pos__'</span>, <span class="string">'__pow__'</span>, <span class="string">'__radd__'</span>, <span class="string">'__rand__'</span>, <span class="string">'__rdiv__'</span>, <span class="string">'__rdivmod__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rfloordiv__'</span>, <span class="string">'__rlshift__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__ror__'</span>, <span class="string">'__rpow__'</span>, <span class="string">'__rrshift__'</span>, <span class="string">'__rshift__'</span>, <span class="string">'__rsub__'</span>, <span class="string">'__rtruediv__'</span>, <span class="string">'__rxor__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__sub__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'__truediv__'</span>, <span class="string">'__trunc__'</span>, <span class="string">'__xor__'</span>, <span class="string">'bit_length'</span>, <span class="string">'conjugate'</span>, <span class="string">'denominator'</span>, <span class="string">'imag'</span>, <span class="string">'numerator'</span>, <span class="string">'real'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(list)</span><br><span class="line">[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__delitem__'</span>, <span class="string">'__delslice__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getslice__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__iadd__'</span>, <span class="string">'__imul__'</span>, <span class="string">'__init__'</span>, <span class="string">'__iter__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__reversed__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__setitem__'</span>, <span class="string">'__setslice__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'append'</span>, <span class="string">'count'</span>, <span class="string">'extend'</span>, <span class="string">'index'</span>, <span class="string">'insert'</span>, <span class="string">'pop'</span>, <span class="string">'remove'</span>, <span class="string">'reverse'</span>, <span class="string">'sort'</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4><p>del(a)：删除变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span>(a)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">'a'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+<h4 id="sorted"><a href="#sorted" class="headerlink" title="sorted"></a>sorted</h4><p>sorted(iterable[, key[, reverse]])</p>
+<blockquote>
+<p>iterable：序列，如字符串、列表、元组等</p>
+<p>key：用来进行比较的元素</p>
+<p>reverse：排序规则，True降序，False升序（默认）</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 元组</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = (<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(a)</span><br><span class="line">[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a <span class="comment">#不变</span></span><br><span class="line">(<span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 字典</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">'a'</span>:<span class="number">90</span>, <span class="string">'c'</span>:<span class="number">100</span>, <span class="string">'b'</span>:<span class="number">80</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(d)</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(d.values())</span><br><span class="line">[<span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(d.items())</span><br><span class="line">[(<span class="string">'a'</span>, <span class="number">90</span>), (<span class="string">'b'</span>, <span class="number">80</span>), (<span class="string">'c'</span>, <span class="number">100</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(d.items(), key = <span class="keyword">lambda</span> x : x[<span class="number">1</span>])</span><br><span class="line">[(<span class="string">'b'</span>, <span class="number">80</span>), (<span class="string">'a'</span>, <span class="number">90</span>), (<span class="string">'c'</span>, <span class="number">100</span>)]</span><br></pre></td></tr></table></figure>
+<p>lambda 匿名函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = <span class="keyword">lambda</span> x : x*x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">5</span>)</span><br><span class="line"><span class="number">25</span></span><br></pre></td></tr></table></figure>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>根据提供的函数对指定序列做映射</p>
+<p>map(function, iterable, …)</p>
+<blockquote>
+<p>function：以参数序列中的每一个元素调用function函数</p>
+<p>iterable：序列，返回包含每次function函数返回值的新列表或迭代器</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = list(map(<span class="keyword">lambda</span> x : x*x, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]))</span><br><span class="line">[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h4><p>将可迭代的对象作为参数，将对象中对应的元素打包成元组，然后返回由元组组成的列表或迭代器。如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同</p>
+<p>zip([iterable, …])</p>
+<blockquote>
+<p>iterable：一个或多个序列</p>
+<p>返回值：返回元组列表</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(zip(a,b))</span><br><span class="line">[(<span class="number">1</span>,<span class="number">5</span>), (<span class="number">2</span>,<span class="number">6</span>), (<span class="number">3</span>,<span class="number">7</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dict(zip(a,b))</span><br><span class="line">&#123;<span class="number">1</span>:<span class="number">5</span>, <span class="number">2</span>:<span class="number">6</span>, <span class="number">3</span>:<span class="number">7</span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h4><p>执行字符串表达式，并返回表达式的值</p>
+<p>eval(expression[, globals[, locals]])</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="number">6</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">'x+3*y'</span>)</span><br><span class="line"><span class="number">15</span></span><br></pre></td></tr></table></figure>
+<h4 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h4><p>与eval类似，执行动态语句，不同的是其主要用于执行语句块</p>
+<p>exec(object[, globals[, locals]])</p>
+<h4 id="all"><a href="#all" class="headerlink" title="all"></a>all</h4><p>判断给定的可迭代参数</p>
+<p>all(iterable)</p>
+<p>如果iterable中所有元素都为true则返回true，否则返回false</p>
+<p>元素除了0、空、None、False外全算True</p>
+<p>空列表、空元组返回值为True</p>
+<h4 id="any"><a href="#any" class="headerlink" title="any"></a>any</h4><p>any(iterable)</p>
+<p>有一个为True则返回True，全为False则返回False</p>
 
       
     </div>
@@ -491,6 +534,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Python/2020-06-01/python_file/" rel="prev" title="【Python】File">
+                【Python】File <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -545,8 +592,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -565,7 +621,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -645,6 +701,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置函数"><span class="nav-number">1.</span> <span class="nav-text">内置函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#id"><span class="nav-number">1.1.</span> <span class="nav-text">id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type"><span class="nav-number">1.2.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dir"><span class="nav-number">1.3.</span> <span class="nav-text">dir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#del"><span class="nav-number">1.4.</span> <span class="nav-text">del</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sorted"><span class="nav-number">1.5.</span> <span class="nav-text">sorted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map"><span class="nav-number">1.6.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zip"><span class="nav-number">1.7.</span> <span class="nav-text">zip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#eval"><span class="nav-number">1.8.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-number">1.9.</span> <span class="nav-text">exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#all"><span class="nav-number">1.10.</span> <span class="nav-text">all</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#any"><span class="nav-number">1.11.</span> <span class="nav-text">any</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
