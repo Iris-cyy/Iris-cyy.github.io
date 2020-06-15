@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://iris-cyy.github.io/"/>
-  <updated>2020-06-01T11:18:09.550Z</updated>
+  <updated>2020-06-15T09:59:45.546Z</updated>
   <id>https://iris-cyy.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Compilation Principle】Semantic Analysis</title>
+    <link href="https://iris-cyy.github.io//Notes/Compilation-Principle/2020-06-15/cp_semantic/"/>
+    <id>https://iris-cyy.github.io//Notes/Compilation-Principle/2020-06-15/cp_semantic/</id>
+    <published>2020-06-15T01:56:51.000Z</published>
+    <updated>2020-06-15T09:59:45.546Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="属性文法"><a href="#属性文法" class="headerlink" title="属性文法"></a>属性文法</h2><p>如果X是一个文法符号，a是X的一个属性，那么我们把与X关联的a的值记作X.a</p><p>在语法制导语义(syntax-directed semantics)中，属性直接与语言的文法符号相联系(终结符号或非终结符号)，若有一个属性的集合$a_1 , . . . , a_k$ ，语法制导语义的原理应用于每个文法规则$X_0→X_1 X_2 . . . X_n$（这里$X_0$ 是一个非终结符号，其他的$X_i$都是任意符号），每个文法符号$X_i$ 的属性$X_i .a_j$ 的值与规则中其他符号的属性值有关。每个关系用属性等式(attribute equation)或语义规则(semantics rule) 表示，形式如下：<br>$$<br>X_i .a_j = f_{ij} (X_0.a_1 , . . . , X_0.a_k ，X_1.a_1 , . . . , X_1.a_k , . . . , X_n .a_1 , . . . , X_n .a_k )<br>$$<br><img src="/images/comp/com-prin6.assets/image-20200615113519905.png" alt="image-20200615113519905"></p><blockquote><p>eg.</p><p>number → number digit | digit<br>digit → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9</p><p>属性文法：</p><p><img src="/images/comp/com-prin6.assets/image-20200615113808216.png" alt="image-20200615113808216"></p><p>语法树：</p><p><img src="/images/comp/com-prin6.assets/image-20200615113824187.png" alt="image-20200615113824187" style="zoom: 67%;" /></p></blockquote><h3 id="相关图（associated-dependency-graph）"><a href="#相关图（associated-dependency-graph）" class="headerlink" title="相关图（associated dependency graph）"></a>相关图（associated dependency graph）</h3><p>表示属性计算时值的传递关系（有向无环图DAG），计算顺序遵循拓扑排序</p><p><img src="/images/comp/com-prin6.assets/image-20200615142459552.png" alt="image-20200615142459552" style="zoom:67%;" /></p><h3 id="合成和继承属性"><a href="#合成和继承属性" class="headerlink" title="合成和继承属性"></a>合成和继承属性</h3><ul><li><p><strong>综合属性</strong>(synthesized)：在语法树中所有的相关都从子节点指向父节点。</p><p>等价地，给定一个文法规则$A →X_1 X_2 . . . X_n $，左边仅有一个a 的相关属性等式有以下形式$A.a = f (X_1.a_1，. . . ，X_1 .a_k，. . . ，X_n .a_1，. . . ，X_n .a_k )$。</p><p>一个属性文法中所有的属性都是合成的，就称作<strong>S-属性文法</strong>(S-attributed grammar)。</p><p>S属性文法的属性计算可以通过对语法树自底向上的后续遍历来进行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">procedurepostEval(T:treenode);</span><br><span class="line">begin</span><br><span class="line">foreachchildCofTdo</span><br><span class="line">postEval(C);</span><br><span class="line">computeallsynthesizedattributesofT;</span><br><span class="line">end</span><br></pre></td></tr></table></figure></li><li><p><strong>继承属性</strong>(inherited)：一个属性如果不是合成的，则称作继承属性</p><ul><li>inheritance from parent to siblings</li><li>inheritance from sibling to sibling</li></ul><p><img src="/images/comp/com-prin6.assets/image-20200615145554033.png" alt="image-20200615145554033" style="zoom:67%;" /></p><p>使用前序遍历或者前序中序遍历相结合的方式来进行属性计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">procedurepreEval(T:treenode);</span><br><span class="line">begin</span><br><span class="line">foreachchildCofTdo</span><br><span class="line">computeallinheritedattributesofC;</span><br><span class="line">preEval(C);</span><br><span class="line">end;</span><br></pre></td></tr></table></figure></li></ul><h3 id="语法分析时的属性计算"><a href="#语法分析时的属性计算" class="headerlink" title="语法分析时的属性计算"></a>语法分析时的属性计算</h3><p><strong>L-属性文法</strong>（L-attributed）：如果对每个继承属性$a_j$和每个文法规则$X_0 →X_1 X_2 . . . X_n$，$a_j$ 的相关等式都有以下形式$X_i .a_j = f_{i j} (X_0 .a_1 , . . . , X_0 .a_k ，X_1 .a_1 , . . . , X_1 .a_k ，. . . ，X_{i -1} .a_1 , . . . , X{i -1} .a_k )$，也就是说，在$X_i$ 处$a_j$ 的值只依赖于在文法规则中Xi 左边出现的符号$X_0 , . . . , X_{i -1}$ 的属性。</p><p><strong>S-属性文法是L-属性文法的特例</strong></p><p>L-属性文法的继承属性不依赖于综合属性</p><ul><li><p>LR分析中综合属性的计算：LR分析程序中通常由一个值栈存储综合属性（如果对每个文法符号有不止一个属性，可能是联合或结构）。值栈将和分析栈并行操作，根据属性等式每次在分析栈出现移进或规约来计算新值。</p><p><img src="/images/comp/com-prin6.assets/image-20200615154418372.png" alt="image-20200615154418372"></p><p><img src="/images/comp/com-prin6.assets/image-20200615154428144.png" alt="image-20200615154428144"></p></li><li><p>在LR分析中继承前面计算的综合属性：因为LR分析使用从左向右的赋值策略，因为这些值已经被压进了值栈，所以与规则右边非终止符相关的动作可以把符号的综合属性使用到规则的左边。为了简要说明这一点，可考虑产生式选择$A→B C$，假设$C$有一个继承属性$I $和以某种方式依赖于$B：C.i = f (B.s) $的综合属性$s$。通过在$B$ 和$C$ 之间引入一个$\epsilon$-产生式安排值栈栈顶的存储，在识别C 之前的$C.i$ 值可以存进一个变量中</p><p><img src="/images/comp/com-prin6.assets/image-20200615155447855.png" alt="image-20200615155447855"></p></li></ul><p>通常在计算属性时，利用参数和返回的函数值与属性值进行通信，而不是把它们作为字段存储在语法树的记录结构中。</p><p><strong>给定一个属性文法，通过适当地修改文法，而无须改变文法的语言，所有的继承属性可以改变成合成属性。</strong></p><blockquote><p>eg.</p><p>decl → type var-list<br>type → int | float<br>var- list → id , var- list | id</p><p>其中dtype属性是继承属性，重写如下：</p><p>decl → var-list id<br>var- list → var- list id, | type<br>type → int | float</p><p><img src="/images/comp/com-prin6.assets/image-20200615163842027.png" alt="image-20200615163842027"></p><p>dtype属性的依赖图：</p><p><img src="/images/comp/com-prin6.assets/image-20200615163923025.png" alt="image-20200615163923025" style="zoom: 67%;" /></p><p>在图中父节点或兄弟节点值的两个id.dtype值的依赖用虚线画出。而这些依赖的出现违反了在这个属性文法中没有继承属性的要求，事实上这些依赖总是留在语法树中(即是非递归的)，并且可能由相应的父节点的操作实现。因此，这些操作不看成是继承的。</p></blockquote><h3 id="符号表"><a href="#符号表" class="headerlink" title="符号表"></a>符号表</h3><h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><ul><li><p>线性表</p><p>insert: O(1), lookup: O(n), delete: O(n)</p><p>效率不高，可以应用在不追求效率的编译器上</p></li><li><p>搜索树（二叉树、AVL树、B树…）</p><p>delete非常麻烦</p><p>少见</p></li><li><p>哈希表</p><p>insert, lookup, delete都在O(1)时间</p><p>稳定性好，效率高，首选</p></li></ul><p>哈希表中每一项可以是一个桶（桶相当于线性表，用于解决冲突），桶的大小应当是质数</p><p>哈希函数：</p><p><img src="/images/comp/com-prin6.assets/image-20200615162944658.png" alt="image-20200615162944658" style="zoom:67%;" /></p><p>α的一种合理的选择是2的幂，这样乘法可以通过移位来完成</p><h4 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h4><p>说明等价(declaration equivalence)：</p><p><img src="/images/comp/com-prin6.assets/image-20200615175632759.png" alt="image-20200615175632759" style="zoom: 50%;" /></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;属性文法&quot;&gt;&lt;a href=&quot;#属性文法&quot; class=&quot;headerlink&quot; title=&quot;属性文法&quot;&gt;&lt;/a&gt;属性文法&lt;/h2&gt;&lt;p&gt;如果X是一个文法符号，a是X的一个属性，那么我们把与X关联的a的值记作X.a&lt;/p&gt;
+&lt;p&gt;在语法制导语义(syntax-d
+      
+    
+    </summary>
+    
+      <category term="Notes" scheme="https://iris-cyy.github.io/categories/Notes/"/>
+    
+      <category term="Compilation Principle" scheme="https://iris-cyy.github.io/categories/Notes/Compilation-Principle/"/>
+    
+    
+      <category term="Notes" scheme="https://iris-cyy.github.io/tags/Notes/"/>
+    
+      <category term="CP" scheme="https://iris-cyy.github.io/tags/CP/"/>
+    
+  </entry>
   
   <entry>
     <title>【Python】File</title>
@@ -559,35 +589,6 @@
       
       
         &lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;顺序索引&lt;/strong&gt;：基于值的顺序排序&lt;br&gt;&lt;strong&gt;散列索引&lt;/strong&gt;：基于将值平均分布到若干散列桶
-      
-    
-    </summary>
-    
-      <category term="Notes" scheme="https://iris-cyy.github.io/categories/Notes/"/>
-    
-      <category term="Database System" scheme="https://iris-cyy.github.io/categories/Notes/Database-System/"/>
-    
-    
-      <category term="Notes" scheme="https://iris-cyy.github.io/tags/Notes/"/>
-    
-      <category term="DBS" scheme="https://iris-cyy.github.io/tags/DBS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【DBS】Lecture 11. Query Processing</title>
-    <link href="https://iris-cyy.github.io//Notes/Database-System/2020-02-11/dbs11/"/>
-    <id>https://iris-cyy.github.io//Notes/Database-System/2020-02-11/dbs11/</id>
-    <published>2020-02-11T08:45:31.000Z</published>
-    <updated>2020-02-11T09:08:37.681Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Meaturing-of-query-cost"><a href="#Meaturing-of-query-cost" class="headerlink" title="Meaturing of query cost"></a>Meaturing of query cost</h2><p>$t_T$ – time to transfer one block. (≈ 0.1ms)<br>$t_S$ – time for one seek. (≈ 4ms)<br>Cost for b block transfers plus S seeks :  $b<em> t_T + S</em> t_S$</p><p><img src="/images/dbs/dbs11.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9pcmlzc3N5LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70-20200211164548821.png" alt="11"></p><h2 id="External-merge-sort"><a href="#External-merge-sort" class="headerlink" title="External merge sort"></a>External merge sort</h2><p>cost:<br>M: 缓冲区能容纳的磁盘块数<br>$b_r$: 关系r中记录的磁盘块数<br>$b_b$: 每次从一个归并段读取的数据数<br>merge passes required: $\; \lceil log_{M-1}(b_r/M) \rceil$<br>total number of block transfer:  $\; b_r(2\lceil log_{M-1}(b_r/M) \rceil + 1)$<br>total number of seeks: $\; 2\lceil b_r/M \rceil + \lceil b_r / b_b \rceil (2 \lceil log_{M-1}(b_r/M) \rceil -1 )$<br><br></p><h2 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h2><p>元组数较少的关系作为外层关系时效果较好</p><h3 id="nested-loop-join-嵌套循环连接"><a href="#nested-loop-join-嵌套循环连接" class="headerlink" title="nested-loop join  嵌套循环连接"></a>nested-loop join  嵌套循环连接</h3><p>n: 元组数（记录数）， b: 磁盘块数</p><p>worst case: $\; n_r * b_s+b_r$ block transfer, plus $n_r +b_r$ disk seeks</p><p>best case: $\; b_r + b_s$ block transfer, plus 2 seeks</p><h3 id="block-nested-loop-join-块嵌套循环连接"><a href="#block-nested-loop-join-块嵌套循环连接" class="headerlink" title="block nested-loop join 块嵌套循环连接"></a>block nested-loop join 块嵌套循环连接</h3><p>worst case: $\; b_r <em> b_s+b_r$ block transfer, plus $2</em>b_r$ seeks</p><p>best case: $\; b_r + b_s$ block transfer, plus 2 seeks</p><p>improve: $\; \lceil b_r / (M-2) * b_s + b_r \rceil$ block transfer, plus $2\lceil b_r / (M-2 ) \rceil$ seeks</p><h3 id="indexed-nested-loop-join-索引嵌套循环连接"><a href="#indexed-nested-loop-join-索引嵌套循环连接" class="headerlink" title="indexed nested-loop join 索引嵌套循环连接"></a>indexed nested-loop join 索引嵌套循环连接</h3><p>c: 用连接条件对s进行单次选择操作的代价</p><p>cost of join: $\; b_r(t_T+t_S)+n_r*c$</p><h3 id="merge-join-排序归并连接"><a href="#merge-join-排序归并连接" class="headerlink" title="merge-join 排序归并连接"></a>merge-join 排序归并连接</h3><p>$b_r+b_s$ block transfers + $\lceil b_r/b_b \rceil + \lceil b_s / b_b \rceil$ seeks</p><h3 id="hash-join"><a href="#hash-join" class="headerlink" title="hash-join"></a>hash-join</h3><p>$M&gt;n_h +1$ 或 $M&gt;(b_s+M)+1$ 或 $M&gt;\sqrt {b_s}$ 时不需要递归划分</p><p>不需要递归划分时：$3(b_r + b_s) +4 * n_h$ block transfers + $2( \lceil b_r / b_b \rceil + \lceil b_s/b_b \rceil)$ seeks</p><p>需要递归划分时：$2(b_r + b_s) \lceil log_{M–1}(b_s) – 1 \rceil + b_r + b_s$ block transfers + $2(\lceil b_r / b_b \rceil + \lceil b_s / b_b \rceil ) \lceil log_{M–1}(b_s) – 1 \rceil$ seeks</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Meaturing-of-query-cost&quot;&gt;&lt;a href=&quot;#Meaturing-of-query-cost&quot; class=&quot;headerlink&quot; title=&quot;Meaturing of query cost&quot;&gt;&lt;/a&gt;Meaturing of quer
       
     
     </summary>
